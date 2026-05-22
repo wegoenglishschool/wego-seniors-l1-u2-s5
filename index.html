@@ -157,6 +157,28 @@
     .grammar-placeholder { flex:1; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; }
     .grammar-placeholder-text { font-size:24px; color:rgba(255,255,255,0.3); font-style:italic; }
 
+    /* ── GRAMMAR: OWNERSHIP CLUB ─────────────────────────────────────── */
+    .oc-wrapper { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px 32px 16px; gap:16px; }
+    .oc-title { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--yellow); letter-spacing:2px; text-align:center; }
+    .oc-subtitle { font-size:13px; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:3px; text-transform:uppercase; margin-top:-10px; }
+    .oc-columns { display:grid; grid-template-columns:1fr 1fr; gap:20px; width:100%; max-width:860px; }
+    .oc-col { background:rgba(255,255,255,0.06); border-radius:16px; padding:20px 24px; display:flex; flex-direction:column; gap:12px; border:1.5px solid rgba(255,255,255,0.1); }
+    .oc-col-header { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+    .oc-col-badge { font-size:11px; font-weight:800; letter-spacing:2px; padding:4px 12px; border-radius:20px; text-transform:uppercase; }
+    .oc-col-badge.singular { background:#F1C405; color:#05046A; }
+    .oc-col-badge.plural   { background:#2196F3; color:#fff; }
+    .oc-col-title { font-size:17px; font-weight:800; color:#fff; }
+    .oc-sentence { font-size:22px; font-weight:500; color:rgba(255,255,255,0.9); line-height:1.5; padding:8px 12px; background:rgba(255,255,255,0.05); border-radius:8px; }
+    .oc-sentence .hl { font-weight:900; font-size:26px; color:#F1C405; }
+    .oc-sentence .hl-blue { font-weight:900; font-size:26px; color:#64B5F6; }
+    .oc-rule { margin-top:6px; padding:10px 16px; border-radius:10px; font-size:13px; font-weight:700; letter-spacing:0.5px; }
+    .oc-rule.singular { background:rgba(241,196,5,0.15); border:1.5px solid rgba(241,196,5,0.4); color:#F1C405; }
+    .oc-rule.plural   { background:rgba(33,150,243,0.15); border:1.5px solid rgba(33,150,243,0.4); color:#64B5F6; }
+    .oc-rule-label { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; opacity:0.7; margin-bottom:3px; }
+    .oc-rule-text { font-size:15px; }
+    .oc-examples-row { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .oc-example-chip { background:rgba(255,255,255,0.08); border-radius:20px; padding:6px 16px; font-size:14px; color:rgba(255,255,255,0.75); border:1px solid rgba(255,255,255,0.12); }
+
     /* ── PHASE 5: GRAMMAR PRACTICE — CLAIM IT! ─────────────────────────── */
     .claim-container { flex:1; position:relative; background:#0a0a1a; overflow:hidden; cursor:none; }
     .claim-spotlight { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(255,255,220,0.18) 0%, rgba(255,255,180,0.08) 50%, transparent 70%); pointer-events:none; transform:translate(-50%,-50%); transition:left 0.05s, top 0.05s; z-index:5; box-shadow: 0 0 60px 30px rgba(255,255,180,0.07); }
@@ -412,10 +434,47 @@
         <span class="slide-title">Ownership Club</span>
         <button class="lp-btn" onclick="openLP(4)">📄 Lesson Plan</button>
       </div>
-      <div class="slide-content">
-        <div class="grammar-placeholder">
-          <div style="font-size:48px;">🔧</div>
-          <div class="grammar-placeholder-text">Grammar content coming soon...</div>
+      <div class="slide-content" style="padding:0;">
+        <div class="oc-wrapper">
+          <div class="oc-title">Possessive Nouns</div>
+          <div class="oc-subtitle">Ownership Club</div>
+          <div class="oc-columns">
+            <!-- SINGULAR -->
+            <div class="oc-col">
+              <div class="oc-col-header">
+                <span class="oc-col-badge singular">'s</span>
+                <span class="oc-col-title">Singular</span>
+              </div>
+              <div class="oc-sentence">Carlos<span class="hl">'s</span> laptop is new.</div>
+              <div class="oc-sentence">Sofia<span class="hl">'s</span> bag is blue.</div>
+              <div class="oc-rule singular">
+                <div class="oc-rule-label">Rule</div>
+                <div class="oc-rule-text">Person<span style="font-size:17px;font-weight:900;"> + 's + </span>thing</div>
+              </div>
+              <div class="oc-examples-row">
+                <span class="oc-example-chip">Carlos's laptop</span>
+                <span class="oc-example-chip">Sofia's bag</span>
+                <span class="oc-example-chip">Mr. Smith's hat</span>
+              </div>
+            </div>
+            <!-- PLURAL -->
+            <div class="oc-col">
+              <div class="oc-col-header">
+                <span class="oc-col-badge plural">s'</span>
+                <span class="oc-col-title">Plural</span>
+              </div>
+              <div class="oc-sentence">The student<span class="hl-blue">s'</span> books are here.</div>
+              <div class="oc-sentence">The teacher<span class="hl-blue">s'</span> desks are big.</div>
+              <div class="oc-rule plural">
+                <div class="oc-rule-label">Rule</div>
+                <div class="oc-rule-text">People<span style="font-size:17px;font-weight:900;"> + s' + </span>thing</div>
+              </div>
+              <div class="oc-examples-row">
+                <span class="oc-example-chip">the students' books</span>
+                <span class="oc-example-chip">the teachers' desks</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -887,7 +887,6 @@
                   <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.45);">Title</div>
                   <div class="badge-title-field" id="badge-title-${slideNum}">___</div>
                 </div>
-                <button class="badge-reveal-btn" onclick="revealTitle(${slideNum}, '${b.title}')">✅ REVEAL TITLE</button>
               </div>
             </div>
             <div style="display:flex; flex-direction:column; gap:12px; min-width:220px; padding-top:8px;">
@@ -911,8 +910,8 @@
                 </div>
               </div>
               <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+                <button onclick="revealTitle(${slideNum}, '${b.title}')" style="background:var(--yellow); border:none; color:var(--navy); border-radius:20px; padding:12px 20px; font-size:14px; font-weight:800; cursor:pointer; letter-spacing:1px;">✅ REVEAL ANSWER</button>
                 <button onclick="goToSlide(24)" style="background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.2); color:#fff; border-radius:20px; padding:10px 16px; font-size:13px; font-weight:800; cursor:pointer;">🔢 Pick Another Number</button>
-                ${nextSlideNum ? `<button onclick="goToSlide(${nextSlideNum})" style="background:var(--yellow); border:none; color:var(--navy); border-radius:20px; padding:10px 16px; font-size:13px; font-weight:800; cursor:pointer;">NEXT ▶</button>` : ''}
               </div>
             </div>
           </div>

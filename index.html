@@ -156,7 +156,7 @@
     .oc-title { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--yellow); letter-spacing:2px; text-align:center; }
     .oc-subtitle { font-size:13px; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:3px; text-transform:uppercase; margin-top:-10px; }
     .oc-columns { display:grid; grid-template-columns:1fr 1fr; gap:20px; width:100%; max-width:860px; }
-    .oc-col { background:rgba(255,255,255,0.06); border-radius:16px; padding:20px 24px; display:flex; flex-direction:column; gap:12px; border:1.5px solid rgba(255,255,255,0.1); }
+    .oc-col { background:rgba(255,255,255,0.06); border-radius:16px; padding:14px 18px; display:flex; flex-direction:column; gap:8px; border:1.5px solid rgba(255,255,255,0.1); overflow:hidden; }
     .oc-col-header { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
     .oc-col-badge { font-size:11px; font-weight:800; letter-spacing:2px; padding:4px 12px; border-radius:20px; text-transform:uppercase; }
     .oc-col-badge.singular { background:#F1C405; color:#05046A; }
@@ -437,11 +437,11 @@
         <span class="slide-title">Ownership Club</span>
         <button class="lp-btn" onclick="openLP(4)">📄 Lesson Plan</button>
       </div>
-      <div class="slide-content" style="padding:6px 16px; overflow-y:hidden; flex-direction:column; align-items:center;">
+      <div class="slide-content" style="padding:6px 12px; overflow-y:auto; flex-direction:column; align-items:center;">
         <!-- CONNECTION BANNER -->
-        <div style="width:100%;max-width:1100px;margin:0 auto 8px;background:rgba(255,255,255,0.06);border-radius:12px;padding:7px 20px;display:flex;align-items:center;gap:20px;border:1.5px solid rgba(255,255,255,0.12);flex-wrap:wrap;">
+        <div style="width:100%;max-width:900px;margin:0 auto 6px;background:rgba(255,255,255,0.06);border-radius:14px;padding:8px 16px;display:flex;align-items:center;gap:16px;border:1.5px solid rgba(255,255,255,0.12);flex-wrap:wrap;">
           <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.45);white-space:nowrap;">Remember?</div>
-          <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+          <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
             <div style="display:flex;align-items:center;gap:8px;">
               <span style="font-size:12px;color:rgba(255,255,255,0.5);">Possessive Adjective:</span>
               <span style="font-size:15px;font-weight:700;color:#64B5F6;">This is <span style="background:rgba(100,181,246,0.2);border-radius:6px;padding:2px 8px;">his</span> laptop.</span>
@@ -453,79 +453,64 @@
             </div>
           </div>
         </div>
-        <!-- TWO MAIN BLOCKS side by side, each with left(content)+right(note) -->
-        <div style="display:flex;gap:14px;width:100%;max-width:1100px;margin:0 auto;flex:1;">
-
-          <!-- ===== SINGULAR BLOCK ===== -->
-          <div style="flex:1;display:flex;gap:0;background:rgba(241,196,5,0.05);border:1.5px solid rgba(241,196,5,0.25);border-radius:16px;overflow:hidden;">
-            <!-- Left: rule + examples -->
-            <div style="flex:1;display:flex;flex-direction:column;gap:5px;padding:12px;">
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
-                <span class="oc-col-badge singular" style="font-size:20px;padding:4px 12px;">’s</span>
-                <span style="font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);">Singular — One Person</span>
-              </div>
-              <div style="background:rgba(241,196,5,0.12);border-radius:8px;padding:5px 12px;font-size:14px;">
-                <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.4);">Rule &nbsp;</span>
-                <span style="color:#fff;">[Person]<span style="font-size:18px;font-weight:900;color:#F1C405;"> ’s </span>+ [thing]</span>
-              </div>
-              <div style="font-size:17px;color:#fff;padding:2px 4px;">This is Carlos<span style="color:#F1C405;font-weight:900;">’s</span> laptop.</div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.4);padding:0 4px 4px;font-style:italic;">= This is <span style="color:#64B5F6;font-style:normal;font-weight:700;">his</span> laptop. (poss. adj.)</div>
-              <div style="font-size:17px;color:#fff;padding:2px 4px;">Sofia<span style="color:#F1C405;font-weight:900;">’s</span> bag is blue.</div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.4);padding:0 4px 4px;font-style:italic;">= <span style="color:#64B5F6;font-style:normal;font-weight:700;">Her</span> bag is blue. (poss. adj.)</div>
-              <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;margin-top:2px;">
-                <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-bottom:4px;">More Examples</div>
-                <div style="font-size:14px;color:#fff;line-height:1.9;">
-                  Maria<span style="color:#F1C405;font-weight:900;">’s</span> phone &nbsp;·&nbsp; David<span style="color:#F1C405;font-weight:900;">’s</span> car &nbsp;·&nbsp; James<span style="color:#F1C405;font-weight:900;">’s</span> house
-                </div>
+        <!-- TWO COLUMNS -->
+        <div style="display:flex;gap:16px;width:100%;max-width:900px;margin:0 auto;">
+          <!-- SINGULAR -->
+          <div class="oc-col" style="flex:1;border-color:rgba(241,196,5,0.3);">
+            <div class="oc-col-header">
+              <span class="oc-col-badge singular">’s</span>
+              <span class="oc-col-title">Singular — One Person</span>
+            </div>
+            <div class="oc-rule singular" style="font-size:14px;padding:7px 14px;">
+              <div class="oc-rule-label">Rule</div>
+              <div class="oc-rule-text">[Person]<span style="font-size:20px;font-weight:900;color:#F1C405;"> ’s </span>+ [thing]</div>
+            </div>
+            <div class="oc-sentence" style="font-size:18px;">This is Carlos<span class="hl">’s</span> laptop.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.45);padding:1px 18px 6px;font-style:italic;">= This is <span style="color:#64B5F6;font-style:normal;font-weight:700;">his</span> laptop. <span style="color:rgba(255,255,255,0.3);">(poss. adj.)</span></div>
+            <div class="oc-sentence" style="font-size:18px;">Sofia<span class="hl">’s</span> bag is blue.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.45);padding:1px 18px 6px;font-style:italic;">= <span style="color:#64B5F6;font-style:normal;font-weight:700;">Her</span> bag is blue. <span style="color:rgba(255,255,255,0.3);">(poss. adj.)</span></div>
+            <div style="margin-top:6px;padding:0 12px;">
+              <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.4);margin-bottom:6px;">More Examples</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:14px;color:#fff;">Maria<span style="color:#F1C405;font-weight:900;">’s</span> phone is new.</span>
+                <span style="font-size:14px;color:#fff;">David<span style="color:#F1C405;font-weight:900;">’s</span> car is red.</span>
+                <span style="font-size:14px;color:#fff;">James<span style="color:#F1C405;font-weight:900;">’s</span> house is big.</span>
               </div>
             </div>
-            <!-- Right: Important note -->
-            <div style="width:195px;background:rgba(241,196,5,0.1);border-left:3px solid #F1C405;padding:12px;display:flex;flex-direction:column;justify-content:center;gap:6px;">
-              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#F1C405;">⚠️ Important</div>
-              <div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5;">When a name ends in <strong style="color:#F1C405;">-s</strong>, we still add <strong style="color:#F1C405;">’s</strong>:</div>
-              <div style="font-size:14px;color:#fff;line-height:2.1;">
-                James → James<span style="color:#F1C405;font-weight:900;">’s</span><br>
-                Lucas → Lucas<span style="color:#F1C405;font-weight:900;">’s</span><br>
-                Chris → Chris<span style="color:#F1C405;font-weight:900;">’s</span>
-              </div>
+            <div style="margin:6px 12px 0;background:rgba(241,196,5,0.1);border-left:3px solid #F1C405;border-radius:0 10px 10px 0;padding:6px 10px;">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#F1C405;margin-bottom:3px;">⚠️ Important</div>
+              <div style="font-size:13px;color:rgba(255,255,255,0.85);">When a name ends in <strong style="color:#F1C405;">-s</strong>, we still add <strong style="color:#F1C405;">’s</strong>:</div>
+              <div style="font-size:14px;color:#fff;margin-top:4px;">James → James<span style="color:#F1C405;font-weight:900;">’s</span> &nbsp;&nbsp; Lucas → Lucas<span style="color:#F1C405;font-weight:900;">’s</span> &nbsp;&nbsp; Chris → Chris<span style="color:#F1C405;font-weight:900;">’s</span></div>
             </div>
           </div>
-
-          <!-- ===== PLURAL BLOCK ===== -->
-          <div style="flex:1;display:flex;gap:0;background:rgba(33,150,243,0.05);border:1.5px solid rgba(33,150,243,0.25);border-radius:16px;overflow:hidden;">
-            <!-- Left: rule + examples -->
-            <div style="flex:1;display:flex;flex-direction:column;gap:5px;padding:12px;">
-              <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
-                <span class="oc-col-badge plural" style="font-size:20px;padding:4px 12px;">s’</span>
-                <span style="font-size:15px;font-weight:700;color:rgba(255,255,255,0.9);">Plural — More Than One Person</span>
-              </div>
-              <div style="background:rgba(33,150,243,0.12);border-radius:8px;padding:5px 12px;font-size:14px;">
-                <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.4);">Rule &nbsp;</span>
-                <span style="color:#fff;">[People]<span style="font-size:18px;font-weight:900;color:#64B5F6;"> s’ </span>+ [thing]</span>
-              </div>
-              <div style="font-size:17px;color:#fff;padding:2px 4px;">These are the student<span style="color:#64B5F6;font-weight:900;">s’</span> books.</div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.4);padding:0 4px 4px;font-style:italic;">= These are <span style="color:#64B5F6;font-style:normal;font-weight:700;">their</span> books. (poss. adj.)</div>
-              <div style="font-size:17px;color:#fff;padding:2px 4px;">The teacher<span style="color:#64B5F6;font-weight:900;">s’</span> desks are big.</div>
-              <div style="font-size:11px;color:rgba(255,255,255,0.4);padding:0 4px 4px;font-style:italic;">= <span style="color:#64B5F6;font-style:normal;font-weight:700;">Their</span> desks are big. (poss. adj.)</div>
-              <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;margin-top:2px;">
-                <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-bottom:4px;">More Examples</div>
-                <div style="font-size:14px;color:#fff;line-height:1.9;">
-                  the kid<span style="color:#64B5F6;font-weight:900;">s’</span> toys &nbsp;·&nbsp; my parent<span style="color:#64B5F6;font-weight:900;">s’</span> house &nbsp;·&nbsp; the player<span style="color:#64B5F6;font-weight:900;">s’</span> uniforms
-                </div>
+          <!-- PLURAL -->
+          <div class="oc-col" style="flex:1;border-color:rgba(33,150,243,0.3);">
+            <div class="oc-col-header">
+              <span class="oc-col-badge plural">s’</span>
+              <span class="oc-col-title">Plural — More Than One Person</span>
+            </div>
+            <div class="oc-rule plural" style="font-size:14px;padding:7px 14px;">
+              <div class="oc-rule-label">Rule</div>
+              <div class="oc-rule-text">[People]<span style="font-size:20px;font-weight:900;color:#64B5F6;"> s’ </span>+ [thing]</div>
+            </div>
+            <div class="oc-sentence" style="font-size:18px;">These are the student<span class="hl-blue">s’</span> books.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.45);padding:1px 18px 6px;font-style:italic;">= These are <span style="color:#64B5F6;font-style:normal;font-weight:700;">their</span> books. <span style="color:rgba(255,255,255,0.3);">(poss. adj.)</span></div>
+            <div class="oc-sentence" style="font-size:18px;">The teacher<span class="hl-blue">s’</span> desks are big.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.45);padding:1px 18px 6px;font-style:italic;">= <span style="color:#64B5F6;font-style:normal;font-weight:700;">Their</span> desks are big. <span style="color:rgba(255,255,255,0.3);">(poss. adj.)</span></div>
+            <div style="margin-top:6px;padding:0 12px;">
+              <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.4);margin-bottom:6px;">More Examples</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:14px;color:#fff;">The kid<span style="color:#64B5F6;font-weight:900;">s’</span> toys are on the floor.</span>
+                <span style="font-size:14px;color:#fff;">My parent<span style="color:#64B5F6;font-weight:900;">s’</span> house is big.</span>
+                <span style="font-size:14px;color:#fff;">The player<span style="color:#64B5F6;font-weight:900;">s’</span> uniforms are blue.</span>
               </div>
             </div>
-            <!-- Right: Important note -->
-            <div style="width:210px;background:rgba(100,181,246,0.1);border-left:3px solid #64B5F6;padding:12px;display:flex;flex-direction:column;justify-content:center;gap:6px;">
-              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#64B5F6;">⚠️ Important</div>
-              <div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5;">Plural nouns already end in <strong style="color:#64B5F6;">-s</strong>, so <strong>only add the apostrophe</strong> — no extra <em>s</em>:</div>
-              <div style="font-size:13px;color:#fff;line-height:2.1;">
-                students → students<span style="color:#64B5F6;font-weight:900;">’</span> books<br>
-                teachers → teachers<span style="color:#64B5F6;font-weight:900;">’</span> desks<br>
-                players → players<span style="color:#64B5F6;font-weight:900;">’</span> uniforms
-              </div>
+            <div style="margin:6px 12px 0;background:rgba(100,181,246,0.1);border-left:3px solid #64B5F6;border-radius:0 10px 10px 0;padding:6px 10px;">
+              <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#64B5F6;margin-bottom:3px;">⚠️ Important</div>
+              <div style="font-size:13px;color:rgba(255,255,255,0.85);">Plural nouns already end in <strong style="color:#64B5F6;">-s</strong>, so we <strong>only add the apostrophe</strong> — no extra <em>s</em>:</div>
+              <div style="font-size:14px;color:#fff;margin-top:4px;">students → students<span style="color:#64B5F6;font-weight:900;">’</span> books &nbsp;&nbsp; teachers → teachers<span style="color:#64B5F6;font-weight:900;">’</span> desks</div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

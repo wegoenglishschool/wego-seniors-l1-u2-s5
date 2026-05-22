@@ -24,7 +24,7 @@
 
     /* ── COVER ─────────────────────────────────────────────────────────── */
     #cover { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:28px 40px 20px; background:#05046A; }
-    #cover-img-area { position:absolute; top:0; left:0; right:0; bottom:0; background:url('images/cover_s5.webp') center 30%/cover no-repeat; z-index:0; }
+    #cover-img-area { position:absolute; top:0; left:0; right:0; bottom:0; background:url('images/cover_s5.png') center 30%/cover no-repeat; z-index:0; }
     #cover-img-area::after { content:''; position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom,rgba(5,4,106,0) 0%,rgba(5,4,106,0.97) 100%); }
     #cover::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(5,4,106,0.35) 0%,rgba(5,4,106,0) 25%,rgba(5,4,106,0) 65%); z-index:1; }
     .cover-top { position:relative; z-index:2; }
@@ -175,7 +175,7 @@
     .vlog-container { flex:1; display:flex; align-items:center; justify-content:center; }
     .vlog-player { width:680px; background:#0f0f0f; border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
     .vlog-thumb { position:relative; width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .vlog-thumb-bg { position:absolute; inset:0; background:url('images/sofia_vlog.webp') center/cover no-repeat; opacity:0.7; }
+    .vlog-thumb-bg { position:absolute; inset:0; background:url('images/sofia_vlog.png') center/cover no-repeat; background-size:cover; opacity:0.85; }
     .vlog-play-btn { position:relative; z-index:2; width:64px; height:64px; background:rgba(255,255,255,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; }
     .vlog-play-btn:hover { transform:scale(1.1); background:#fff; }
     .vlog-play-icon { width:0; height:0; border-top:18px solid transparent; border-bottom:18px solid transparent; border-left:28px solid #0f0f0f; margin-left:5px; }
@@ -454,9 +454,10 @@
         <div class="vlog-container">
           <div class="vlog-player">
             <div class="vlog-thumb">
-              <div class="vlog-thumb-bg"></div>
-              <div class="vlog-play-btn">
-                <div class="vlog-play-icon"></div>
+              <div class="vlog-thumb-bg" style="background-image:url('images/sofia_vlog.png');"></div>
+              <audio id="sofia-audio" src="audio/Sofia_Vlog_Audio_S5_L1_U2.mp3" preload="auto"></audio>
+              <div class="vlog-play-btn" id="vlog-play-btn" onclick="toggleVlogAudio()">
+                <div class="vlog-play-icon" id="vlog-play-icon"></div>
               </div>
             </div>
             <div class="vlog-info">
@@ -582,7 +583,7 @@
   ];
 
   const FAMOUS = [
-    { name:'Shakira', photo:'images/shakira.webp', emoji:'🎤',
+    { name:'Shakira', photo:'images/famous/shakira.png', emoji:'🎤',
       stmts:[
         { text:"Her hometown is Barranquilla.", tf:true },
         { text:"Her favorite instrument is the guitar.", tf:true },
@@ -591,7 +592,7 @@
         { text:"Her squad includes other Latin artists.", tf:true },
       ]
     },
-    { name:'Lionel Messi', photo:'images/messi.webp', emoji:'⚽',
+    { name:'Lionel Messi', photo:'images/famous/messi.png', emoji:'⚽',
       stmts:[
         { text:"His jersey number is 10.", tf:true },
         { text:"Messi's hometown is Buenos Aires.", tf:false, fix:"His hometown is Rosario, not Buenos Aires." },
@@ -600,7 +601,7 @@
         { text:"His better half is always by his side at every game.", tf:true },
       ]
     },
-    { name:'Beyoncé', photo:'images/beyonce.webp', emoji:'👑',
+    { name:'Beyoncé', photo:'images/famous/beyonce.png', emoji:'👑',
       stmts:[
         { text:"Her daughter's name is Blue Ivy.", tf:true },
         { text:"Her nationality is British.", tf:false, fix:"She is American, not British." },
@@ -609,7 +610,7 @@
         { text:"Jay-Z is her partner in crime — they make music together.", tf:true },
       ]
     },
-    { name:'Cristiano Ronaldo', photo:'images/ronaldo.webp', emoji:'⚽',
+    { name:'Cristiano Ronaldo', photo:'images/famous/ronaldo.png', emoji:'⚽',
       stmts:[
         { text:"His jersey number is 7.", tf:true },
         { text:"Ronaldo's hometown is Madrid, Spain.", tf:false, fix:"His hometown is Funchal, Madeira, Portugal." },
@@ -787,7 +788,8 @@
         <div class="slide-content">
           <div class="et-person">
             <div class="et-photo-col">
-              <div style="width:180px;height:180px;border-radius:20px;border:3px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:80px;">${f.emoji}</div>
+              <img src="${f.photo}" alt="${f.name}" style="width:180px;height:180px;border-radius:20px;border:3px solid rgba(255,255,255,0.2);object-fit:cover;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div style="width:180px;height:180px;border-radius:20px;border:3px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);display:none;align-items:center;justify-content:center;font-size:80px;">${f.emoji}</div>
               <div class="et-person-name">${f.name}</div>
             </div>
             <div class="et-statements">
@@ -924,6 +926,22 @@
     }
     document.getElementById(`stmt-${slideNum}-${si}`).style.cursor = 'default';
     document.getElementById(`stmt-${slideNum}-${si}`).onclick = null;
+  }
+
+  // ── VLOG AUDIO ─────────────────────────────────────────────────────────
+  function toggleVlogAudio() {
+    const audio = document.getElementById('sofia-audio');
+    const btn = document.getElementById('vlog-play-btn');
+    const icon = document.getElementById('vlog-play-icon');
+    if (audio.paused) {
+      audio.play();
+      btn.style.background = 'rgba(255,50,50,0.9)';
+      icon.style.cssText = 'width:14px;height:14px;background:#fff;border-radius:2px;margin:0;';
+    } else {
+      audio.pause();
+      btn.style.background = 'rgba(255,255,255,0.9)';
+      icon.style.cssText = 'width:0;height:0;border-top:18px solid transparent;border-bottom:18px solid transparent;border-left:28px solid #0f0f0f;margin-left:5px;';
+    }
   }
 
   // ── LP MODAL ──────────────────────────────────────────────────────────

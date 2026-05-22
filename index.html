@@ -544,29 +544,28 @@
 
 <script>
   // ── DATA ──────────────────────────────────────────────────────────────
+  // OBJECTS: intercalado Team1 Round1, Team2 Round1, Team1 Round2, Team2 Round2...
   const OBJECTS = [
-    // TEAM 1 (slides 2–11)
-    { name:'Sharpener', img:'images/objects/r01_sharpener.png', team:1, round:1, opts:['Stapler','Sharpener','Tape'], correct:'Sharpener' },
-    { name:'Stapler',   img:'images/objects/r02_stapler.png',   team:1, round:2, opts:['Stapler','Hanger','Sharpener'], correct:'Stapler' },
-    { name:'Tape',      img:'images/objects/r03_tape.png',      team:1, round:3, opts:['Dental floss','Rug','Tape'], correct:'Tape' },
-    { name:'Dental floss', img:'images/objects/r04_dentalfloss.png', team:1, round:4, opts:['Tape','Dental floss','Toothpick'], correct:'Dental floss' },
-    { name:'Rug',       img:'images/objects/r05_rug.png',       team:1, round:5, opts:['Blanket','Cushion','Rug'], correct:'Rug' },
-    { name:'Hanger',    img:'images/objects/r06_hanger.png',    team:1, round:6, opts:['Hanger','Nightstand','Cabinet'], correct:'Hanger' },
-    { name:'Toothpick', img:'images/objects/r07_toothpick.png', team:1, round:7, opts:['Dental floss','Toothpick','Sharpener'], correct:'Toothpick' },
-    { name:'Nightstand',img:'images/objects/r08_nightstand.png',team:1, round:8, opts:['Cabinet','Pillow','Nightstand'], correct:'Nightstand' },
-    { name:'Bathtub',   img:'images/objects/r09_bathtub.png',   team:1, round:9, opts:['Bathtub','Bowl','Mirror'], correct:'Bathtub' },
-    { name:'Cabinet',   img:'images/objects/r10_cabinet.png',   team:1, round:10,opts:['Nightstand','Cabinet','Hanger'], correct:'Cabinet' },
-    // TEAM 2 (slides 12–21)
-    { name:'Cushion',   img:'images/objects/r11_cushion.png',   team:2, round:1, opts:['Pillow','Blanket','Cushion'], correct:'Cushion' },
-    { name:'Bucket',    img:'images/objects/r12_bucket.png',    team:2, round:2, opts:['Bucket','Bowl','Tray'], correct:'Bucket' },
-    { name:'Light switch',img:'images/objects/r13_lightswitch.png',team:2,round:3,opts:['Light bulb','Light switch','Flashlight'], correct:'Light switch' },
-    { name:'Pillow',    img:'images/objects/r14_pillow.png',    team:2, round:4, opts:['Cushion','Blanket','Pillow'], correct:'Pillow' },
-    { name:'Blanket',   img:'images/objects/r15_blanket.png',   team:2, round:5, opts:['Blanket','Rug','Cushion'], correct:'Blanket' },
-    { name:'Light bulb',img:'images/objects/r16_lightbulb.png', team:2, round:6, opts:['Flashlight','Light bulb','Light switch'], correct:'Light bulb' },
-    { name:'Mirror',    img:'images/objects/r17_mirror.png',    team:2, round:7, opts:['Bathtub','Cabinet','Mirror'], correct:'Mirror' },
-    { name:'Bowl',      img:'images/objects/r18_bowl.png',      team:2, round:8, opts:['Bowl','Bucket','Tray'], correct:'Bowl' },
-    { name:'Padlock',   img:'images/objects/r19_padlock.png',   team:2, round:9, opts:['Flashlight','Padlock','Sharpener'], correct:'Padlock' },
-    { name:'Flashlight',img:'images/objects/r20_flashlight.png',team:2, round:10,opts:['Padlock','Light bulb','Flashlight'], correct:'Flashlight' },
+    { name:'Sharpener',    img:'images/objects/r01_sharpener.png',   team:1, round:1,  opts:['Stapler','Sharpener','Tape'],                correct:'Sharpener' },
+    { name:'Cushion',      img:'images/objects/r11_cushion.png',     team:2, round:1,  opts:['Pillow','Blanket','Cushion'],                correct:'Cushion' },
+    { name:'Stapler',      img:'images/objects/r02_stapler.png',     team:1, round:2,  opts:['Stapler','Hanger','Sharpener'],              correct:'Stapler' },
+    { name:'Bucket',       img:'images/objects/r12_bucket.png',      team:2, round:2,  opts:['Bucket','Bowl','Tray'],                      correct:'Bucket' },
+    { name:'Tape',         img:'images/objects/r03_tape.png',        team:1, round:3,  opts:['Dental floss','Rug','Tape'],                 correct:'Tape' },
+    { name:'Light switch', img:'images/objects/r13_lightswitch.png', team:2, round:3,  opts:['Light bulb','Light switch','Flashlight'],    correct:'Light switch' },
+    { name:'Dental floss', img:'images/objects/r04_dentalfloss.png', team:1, round:4,  opts:['Tape','Dental floss','Toothpick'],           correct:'Dental floss' },
+    { name:'Pillow',       img:'images/objects/r14_pillow.png',      team:2, round:4,  opts:['Cushion','Blanket','Pillow'],                correct:'Pillow' },
+    { name:'Rug',          img:'images/objects/r05_rug.png',         team:1, round:5,  opts:['Blanket','Cushion','Rug'],                   correct:'Rug' },
+    { name:'Blanket',      img:'images/objects/r15_blanket.png',     team:2, round:5,  opts:['Blanket','Rug','Cushion'],                   correct:'Blanket' },
+    { name:'Hanger',       img:'images/objects/r06_hanger.png',      team:1, round:6,  opts:['Hanger','Nightstand','Cabinet'],             correct:'Hanger' },
+    { name:'Light bulb',   img:'images/objects/r16_lightbulb.png',   team:2, round:6,  opts:['Flashlight','Light bulb','Light switch'],    correct:'Light bulb' },
+    { name:'Toothpick',    img:'images/objects/r07_toothpick.png',   team:1, round:7,  opts:['Dental floss','Toothpick','Sharpener'],      correct:'Toothpick' },
+    { name:'Mirror',       img:'images/objects/r17_mirror.png',      team:2, round:7,  opts:['Bathtub','Cabinet','Mirror'],                correct:'Mirror' },
+    { name:'Nightstand',   img:'images/objects/r08_nightstand.png',  team:1, round:8,  opts:['Cabinet','Pillow','Nightstand'],             correct:'Nightstand' },
+    { name:'Bowl',         img:'images/objects/r18_bowl.png',        team:2, round:8,  opts:['Bowl','Bucket','Tray'],                      correct:'Bowl' },
+    { name:'Bathtub',      img:'images/objects/r09_bathtub.png',     team:1, round:9,  opts:['Bathtub','Bowl','Mirror'],                   correct:'Bathtub' },
+    { name:'Padlock',      img:'images/objects/r19_padlock.png',     team:2, round:9,  opts:['Flashlight','Padlock','Sharpener'],          correct:'Padlock' },
+    { name:'Cabinet',      img:'images/objects/r10_cabinet.png',     team:1, round:10, opts:['Nightstand','Cabinet','Hanger'],             correct:'Cabinet' },
+    { name:'Flashlight',   img:'images/objects/r20_flashlight.png',  team:2, round:10, opts:['Padlock','Light bulb','Flashlight'],         correct:'Flashlight' },
   ];
 
   const BADGES = [
@@ -649,8 +648,12 @@
   // ── GENERATE OBJECT SLIDES ────────────────────────────────────────────
   function buildObjectSlides() {
     const area = document.getElementById('slide-area');
+    const FIRST_OBJ = 2;
+    const LAST_OBJ  = 21; // slides 2–21
     OBJECTS.forEach((obj, i) => {
-      const slideNum = i + 2;
+      const slideNum  = i + FIRST_OBJ;
+      const prevSlide = slideNum > FIRST_OBJ ? slideNum - 1 : null;
+      const nextSlide = slideNum < LAST_OBJ  ? slideNum + 1 : 22; // 22 = final score
       const teamColor = obj.team === 1 ? 'var(--team1)' : 'var(--team2)';
       const div = document.createElement('div');
       div.className = 'slide';
@@ -662,6 +665,18 @@
           <button class="lp-btn" onclick="openLP(1)">📄 Lesson Plan</button>
         </div>
         <div class="obj-slide">
+          <!-- Live scoreboard mini bar -->
+          <div style="display:flex;justify-content:center;gap:40px;padding:6px 20px 0;flex-shrink:0;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:11px;font-weight:800;letter-spacing:2px;color:var(--team1);">TEAM 1</span>
+              <span id="obj-score-t1-${slideNum}" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--team1);line-height:1;">0</span>
+            </div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:rgba(255,255,255,0.25);align-self:center;">VS</div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span id="obj-score-t2-${slideNum}" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--team2);line-height:1;">0</span>
+              <span style="font-size:11px;font-weight:800;letter-spacing:2px;color:var(--team2);">TEAM 2</span>
+            </div>
+          </div>
           <div class="obj-main">
             <img class="obj-img" src="${obj.img}" alt="${obj.name}">
             <div class="obj-answer-reveal" id="ans-${slideNum}">✅ ${obj.name}</div>
@@ -674,9 +689,11 @@
             <button class="hint-close" onclick="closeHint(${slideNum})">✕ Close</button>
           </div>
           <div class="obj-bottom">
+            ${prevSlide ? `<button class="obj-btn" style="background:rgba(255,255,255,0.12);color:#fff;" onclick="goToSlide(${prevSlide})">◀ PREV</button>` : ''}
             <button class="obj-btn obj-btn-hint" onclick="showHint(${slideNum})">💡 HINT</button>
             <button class="obj-btn obj-btn-answer" onclick="showAnswer(${slideNum})">✅ ANSWER</button>
-            <button class="obj-btn obj-btn-point" style="background:${teamColor};" onclick="addPoint(${obj.team})">➕ POINT — TEAM ${obj.team}</button>
+            <button class="obj-btn obj-btn-point" style="background:${teamColor};" onclick="addPoint(${obj.team}, ${slideNum})">➕ POINT — TEAM ${obj.team}</button>
+            <button class="obj-btn" style="background:rgba(255,255,255,0.12);color:#fff;" onclick="goToSlide(${nextSlide})">NEXT ▶</button>
           </div>
         </div>
       `;
@@ -855,9 +872,14 @@
     const el = document.getElementById(`ans-${slideNum}`);
     el.style.display = 'block';
   }
-  function addPoint(team) {
+  function addPoint(team, slideNum) {
     scores[team]++;
+    // Update main scoreboard on setup slide
     document.getElementById(`score-t${team}`).textContent = scores[team];
+    // Update mini scoreboards on all object slides
+    document.querySelectorAll(`[id^="obj-score-t${team}-"]`).forEach(el => {
+      el.textContent = scores[team];
+    });
   }
   function updateFinalScore() {
     document.getElementById('final-t1').textContent = scores[1];

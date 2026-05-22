@@ -133,25 +133,19 @@
 
     /* Badge slide */
     .badge-slide { flex:1; display:flex; align-items:center; justify-content:center; padding:10px; }
-    .badge-card { width:480px; background:rgba(255,255,255,0.06); border-radius:24px; border:3px solid rgba(255,255,255,0.15); overflow:hidden; position:relative; }
-    .badge-header { background:var(--navy); border-bottom:3px solid var(--yellow); padding:12px 20px; display:flex; align-items:center; gap:12px; }
-    .badge-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--yellow); letter-spacing:2px; }
-    .badge-num { margin-left:auto; font-size:13px; font-weight:800; color:rgba(255,255,255,0.5); }
-    .badge-body { padding:20px; display:flex; gap:20px; align-items:center; }
-    .badge-avatar { width:90px; height:90px; border-radius:50%; border:3px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:48px; background:rgba(255,255,255,0.05); flex-shrink:0; }
-    .badge-info { flex:1; display:flex; flex-direction:column; gap:6px; }
-    .badge-field { display:flex; flex-direction:column; }
-    .badge-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.45); }
-    .badge-value { font-size:18px; font-weight:700; color:#fff; }
-    .badge-title-field { font-size:28px; font-weight:800; color:var(--yellow); min-height:40px; }
-    .badge-footer { padding:12px 20px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:center; }
+    /* Badge slide — PNG image version */
+    .badge-card { width:520px; background:rgba(255,255,255,0.06); border-radius:24px; border:3px solid rgba(255,255,255,0.15); overflow:hidden; position:relative; }
+    .badge-img-wrap { position:relative; width:100%; }
+    .badge-img { width:100%; display:block; border-radius:20px 20px 0 0; }
+    .badge-title-row { padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:rgba(255,255,255,0.04); border-top:1px solid rgba(255,255,255,0.1); }
+    .badge-title-field { font-size:32px; font-weight:800; color:var(--yellow); min-height:44px; min-width:80px; }
     .badge-reveal-btn { background:var(--grammar); border:none; color:#fff; font-size:14px; font-weight:800; padding:10px 28px; border-radius:20px; cursor:pointer; transition:all 0.2s; }
     .badge-reveal-btn:hover { filter:brightness(1.1); }
 
     /* Frosted overlay */
-    .badge-frost { position:absolute; inset:0; backdrop-filter:blur(12px); background:rgba(5,4,106,0.6); display:flex; align-items:center; justify-content:center; border-radius:24px; transition:opacity 0.4s; }
+    .badge-frost { position:absolute; inset:0; backdrop-filter:blur(14px); background:rgba(5,4,106,0.65); display:flex; align-items:center; justify-content:center; border-radius:20px 20px 0 0; transition:opacity 0.4s; }
     .badge-frost.hidden { opacity:0; pointer-events:none; }
-    .badge-frost-num { font-family:'Bebas Neue',sans-serif; font-size:96px; color:rgba(255,255,255,0.3); }
+    .badge-frost-num { font-family:'Bebas Neue',sans-serif; font-size:110px; color:rgba(255,255,255,0.3); }
 
     /* ── PHASE 4: GRAMMAR — PLACEHOLDER ────────────────────────────────── */
     .grammar-placeholder { flex:1; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; }
@@ -291,15 +285,15 @@
         <div class="cover-btn-phase">Grammar</div>
         <div class="cover-btn-title">Ownership Club</div>
       </button>
-      <button class="cover-btn" style="background:var(--practice);" onclick="goToSlide(36)">
+      <button class="cover-btn" style="background:var(--practice);" onclick="goToSlide(37)">
         <div class="cover-btn-phase">Grammar Practice</div>
-        <div class="cover-btn-title">Claim It!</div>
+        <div class="cover-btn-title">Fix It! + Claim It!</div>
       </button>
-      <button class="cover-btn" style="background:var(--listening);" onclick="goToSlide(37)">
+      <button class="cover-btn" style="background:var(--listening);" onclick="goToSlide(39)">
         <div class="cover-btn-phase">Listening</div>
         <div class="cover-btn-title">My Vlog: Meet My Family</div>
       </button>
-      <button class="cover-btn" style="background:var(--exit);" onclick="goToSlide(39)">
+      <button class="cover-btn" style="background:var(--exit);" onclick="goToSlide(41)">
         <div class="cover-btn-phase">Exit Ticket</div>
         <div class="cover-btn-title">True, True, False, False</div>
       </button>
@@ -315,10 +309,10 @@
     <button class="nb-btn" onclick="goToSlide(23)">VOCAB</button>
     <button class="nb-btn" onclick="goToSlide(24)">VOCAB PRACTICE</button>
     <button class="nb-btn" onclick="goToSlide(35)">GRAMMAR</button>
-    <button class="nb-btn" onclick="goToSlide(36)">GRAM. PRACTICE</button>
-    <button class="nb-btn" onclick="goToSlide(37)">LISTENING</button>
-    <button class="nb-btn" onclick="goToSlide(39)">EXIT TICKET</button>
-    <span id="nb-counter">1/44</span>
+    <button class="nb-btn" onclick="goToSlide(37)">GRAM. PRACTICE</button>
+    <button class="nb-btn" onclick="goToSlide(39)">LISTENING</button>
+    <button class="nb-btn" onclick="goToSlide(41)">EXIT TICKET</button>
+    <span id="nb-counter">1/47</span>
   </div>
   <div id="slide-area">
 
@@ -436,60 +430,140 @@
     <!-- ── SLIDES 25–34: BADGE SLIDES ─────────────────────────────────── -->
     <!-- Generated by JS -->
 
-    <!-- ── SLIDE 35: GRAMMAR — OWNERSHIP CLUB (PLACEHOLDER) ──────────── -->
+    <!-- ── SLIDE 35: GRAMMAR — BLOCK 1: SINGULAR ('s) ──────────────────── -->
     <div class="slide" id="slide-35">
       <div class="section-header">
         <span class="phase-badge" style="background:var(--grammar);">GRAMMAR</span>
-        <span class="slide-title">Ownership Club</span>
+        <span class="slide-title">Ownership Club — Block 1: Singular ('s)</span>
         <button class="lp-btn" onclick="openLP(4)">📄 Lesson Plan</button>
       </div>
       <div class="slide-content" style="padding:0;">
         <div class="oc-wrapper">
-          <div class="oc-title">Possessive Nouns</div>
+          <div class="oc-block-label">Block 1 of 2</div>
+          <div class="oc-title">Singular Possessive Nouns</div>
           <div class="oc-subtitle">Ownership Club</div>
-          <div class="oc-columns">
-            <!-- SINGULAR -->
-            <div class="oc-col">
+          <div style="width:100%;max-width:700px;">
+            <div class="oc-col" style="border-color:rgba(241,196,5,0.3);">
               <div class="oc-col-header">
                 <span class="oc-col-badge singular">'s</span>
-                <span class="oc-col-title">Singular</span>
+                <span class="oc-col-title">Singular — One Person</span>
               </div>
-              <div class="oc-sentence">Carlos<span class="hl">'s</span> laptop is new.</div>
-              <div class="oc-sentence">Sofia<span class="hl">'s</span> bag is blue.</div>
-              <div class="oc-rule singular">
+              <div class="oc-rule singular" style="font-size:18px;padding:14px 20px;">
                 <div class="oc-rule-label">Rule</div>
-                <div class="oc-rule-text">Person<span style="font-size:17px;font-weight:900;"> + 's + </span>thing</div>
+                <div class="oc-rule-text">[Person]<span style="font-size:22px;font-weight:900;color:#F1C405;"> 's </span>+ [thing]</div>
               </div>
-              <div class="oc-examples-row">
+              <div class="oc-sentence" style="font-size:26px;">This is Carlos<span class="hl">'s</span> laptop.</div>
+              <div class="oc-sentence" style="font-size:26px;">Sofia<span class="hl">'s</span> bag is blue.</div>
+              <div class="oc-examples-row" style="margin-top:8px;">
                 <span class="oc-example-chip">Carlos's laptop</span>
                 <span class="oc-example-chip">Sofia's bag</span>
                 <span class="oc-example-chip">Mr. Smith's hat</span>
               </div>
             </div>
-            <!-- PLURAL -->
-            <div class="oc-col">
+          </div>
+        </div>
+        <div class="oc-nav-row">
+          <button class="oc-nav-btn" onclick="goToSlide(36)">NEXT →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 36: GRAMMAR — BLOCK 2: PLURAL (s') ──────────────────────── -->
+    <div class="slide" id="slide-36">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--grammar);">GRAMMAR</span>
+        <span class="slide-title">Ownership Club — Block 2: Plural (s')</span>
+        <button class="lp-btn" onclick="openLP(4)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content" style="padding:0;">
+        <div class="oc-wrapper">
+          <div class="oc-block-label">Block 2 of 2</div>
+          <div class="oc-title">Plural Possessive Nouns</div>
+          <div class="oc-subtitle">Ownership Club</div>
+          <div style="width:100%;max-width:700px;">
+            <div class="oc-col" style="border-color:rgba(33,150,243,0.3);">
               <div class="oc-col-header">
                 <span class="oc-col-badge plural">s'</span>
-                <span class="oc-col-title">Plural</span>
+                <span class="oc-col-title">Plural — More Than One Person</span>
               </div>
-              <div class="oc-sentence">The student<span class="hl-blue">s'</span> books are here.</div>
-              <div class="oc-sentence">The teacher<span class="hl-blue">s'</span> desks are big.</div>
-              <div class="oc-rule plural">
+              <div class="oc-rule plural" style="font-size:18px;padding:14px 20px;">
                 <div class="oc-rule-label">Rule</div>
-                <div class="oc-rule-text">People<span style="font-size:17px;font-weight:900;"> + s' + </span>thing</div>
+                <div class="oc-rule-text">[People]<span style="font-size:22px;font-weight:900;color:#64B5F6;"> s' </span>+ [thing]</div>
               </div>
-              <div class="oc-examples-row">
+              <div class="oc-sentence" style="font-size:26px;">These are the student<span class="hl-blue">s'</span> books.</div>
+              <div class="oc-sentence" style="font-size:26px;">The teacher<span class="hl-blue">s'</span> desks are big.</div>
+              <div class="oc-examples-row" style="margin-top:8px;">
                 <span class="oc-example-chip">the students' books</span>
                 <span class="oc-example-chip">the teachers' desks</span>
               </div>
             </div>
           </div>
         </div>
+        <div class="oc-nav-row" style="justify-content:flex-start;">
+          <button class="oc-nav-btn" style="background:rgba(255,255,255,0.15);color:#fff;" onclick="goToSlide(35)">← PREVIOUS</button>
+        </div>
       </div>
     </div>
 
-    <!-- ── SLIDE 36: GRAMMAR PRACTICE — CLAIM IT! ────────────────────── -->
-    <div class="slide" id="slide-36">
+    <!-- ── SLIDE 37: GRAMMAR PRACTICE — FIX IT! ─────────────────────────── -->
+    <div class="slide" id="slide-37">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--practice);">GRAMMAR PRACTICE</span>
+        <span class="slide-title">Fix It! — Spot the Error</span>
+        <button class="lp-btn" onclick="openLP(5)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content" style="padding:0;">
+        <div class="fixit-wrapper">
+          <div class="oc-block-label">Block 1 of 2</div>
+          <div class="fixit-title">Fix It! — Spot the Error</div>
+          <div class="fixit-subtitle">Click each sentence to reveal the correction</div>
+          <div class="fixit-sentences">
+            <div class="fixit-row" id="fi-0" onclick="revealFix(0)">
+              <span class="fixit-icon"><span class="fixit-icon-x">❌</span><span class="fixit-icon-check">✅</span></span>
+              <span class="fixit-wrong">The bag of Maria.</span>
+              <span class="fixit-arrow">→</span>
+              <span class="fixit-correct">Maria's bag.</span>
+            </div>
+            <div class="fixit-row" id="fi-1" onclick="revealFix(1)">
+              <span class="fixit-icon"><span class="fixit-icon-x">❌</span><span class="fixit-icon-check">✅</span></span>
+              <span class="fixit-wrong">The car of my dad.</span>
+              <span class="fixit-arrow">→</span>
+              <span class="fixit-correct">My dad's car.</span>
+            </div>
+            <div class="fixit-row" id="fi-2" onclick="revealFix(2)">
+              <span class="fixit-icon"><span class="fixit-icon-x">❌</span><span class="fixit-icon-check">✅</span></span>
+              <span class="fixit-wrong">The shoes of Diego.</span>
+              <span class="fixit-arrow">→</span>
+              <span class="fixit-correct">Diego's shoes.</span>
+            </div>
+            <div class="fixit-row" id="fi-3" onclick="revealFix(3)">
+              <span class="fixit-icon"><span class="fixit-icon-x">❌</span><span class="fixit-icon-check">✅</span></span>
+              <span class="fixit-wrong">The books of the students.</span>
+              <span class="fixit-arrow">→</span>
+              <span class="fixit-correct">The students' books.</span>
+            </div>
+            <div class="fixit-row" id="fi-4" onclick="revealFix(4)">
+              <span class="fixit-icon"><span class="fixit-icon-x">❌</span><span class="fixit-icon-check">✅</span></span>
+              <span class="fixit-wrong">The hat of Mr. Smith.</span>
+              <span class="fixit-arrow">→</span>
+              <span class="fixit-correct">Mr. Smith's hat.</span>
+            </div>
+            <div class="fixit-row" id="fi-5" onclick="revealFix(5)">
+              <span class="fixit-icon"><span class="fixit-icon-x">❌</span><span class="fixit-icon-check">✅</span></span>
+              <span class="fixit-wrong">The desks of the teachers.</span>
+              <span class="fixit-arrow">→</span>
+              <span class="fixit-correct">The teachers' desks.</span>
+            </div>
+          </div>
+        </div>
+        <div class="oc-nav-row">
+          <button class="oc-nav-btn" onclick="goToSlide(38)">NEXT →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 38: GRAMMAR PRACTICE — CLAIM IT! ────────────────────── -->
+    <div class="slide" id="slide-38">
       <div class="section-header">
         <span class="phase-badge" style="background:var(--practice);">GRAMMAR PRACTICE</span>
         <span class="slide-title">Claim It!</span>
@@ -499,6 +573,7 @@
         <div class="claim-spotlight" id="claim-spotlight"></div>
         <!-- Pairs placed by JS -->
         <div class="claim-bottom">
+          <button class="oc-nav-btn" style="background:rgba(255,255,255,0.15);color:#fff;font-size:13px;padding:8px 20px;" onclick="goToSlide(37)">← PREVIOUS</button>
           <div class="claim-model">
             <div class="claim-model-label">Question</div>
             <div class="claim-model-text">Whose <em>[object]</em> is it?</div>
@@ -511,8 +586,8 @@
       </div>
     </div>
 
-    <!-- ── SLIDE 37: LISTENING — VLOG FRAME ──────────────────────────── -->
-    <div class="slide" id="slide-37">
+    <!-- ── SLIDE 39: LISTENING — VLOG FRAME ──────────────────────────── -->
+    <div class="slide" id="slide-39">
       <div class="section-header">
         <span class="phase-badge" style="background:var(--listening);">LISTENING</span>
         <span class="slide-title">My Vlog: Meet My Family</span>
@@ -547,8 +622,8 @@
       </div>
     </div>
 
-    <!-- ── SLIDE 38: LISTENING — COMPREHENSION QUESTIONS ─────────────── -->
-    <div class="slide" id="slide-38">
+    <!-- ── SLIDE 40: LISTENING — COMPREHENSION QUESTIONS ─────────────── -->
+    <div class="slide" id="slide-40">
       <div class="section-header">
         <span class="phase-badge" style="background:var(--listening);">LISTENING</span>
         <span class="slide-title">Let's Check! 🎯</span>
@@ -572,8 +647,8 @@
       </div>
     </div>
 
-    <!-- ── SLIDE 39: EXIT TICKET — INSTRUCTIONS ───────────────────────── -->
-    <div class="slide" id="slide-39">
+    <!-- ── SLIDE 41: EXIT TICKET — INSTRUCTIONS ───────────────────────── -->
+    <div class="slide" id="slide-41">
       <div class="section-header">
         <span class="phase-badge" style="background:var(--exit);">EXIT TICKET</span>
         <span class="slide-title">True, True, False, False — Famous Edition</span>
@@ -587,12 +662,12 @@
             <div class="et-label-true">✅ TRUE</div>
             <div class="et-label-false">❌ FALSE</div>
           </div>
-          <button class="et-next-btn" style="margin-top:24px;font-size:16px;padding:14px 40px;" onclick="goToSlide(40)">START ▶</button>
+          <button class="et-next-btn" style="margin-top:24px;font-size:16px;padding:14px 40px;" onclick="goToSlide(42)">START ▶</button>
         </div>
       </div>
     </div>
 
-    <!-- ── SLIDES 40–43: FAMOUS PERSON SLIDES ─────────────────────────── -->
+    <!-- ── SLIDES 42–45: FAMOUS PERSON SLIDES ─────────────────────────── -->
     <!-- Generated by JS -->
 
   </div><!-- #slide-area -->
@@ -713,7 +788,7 @@
   // ── STATE ─────────────────────────────────────────────────────────────
   let currentSlide = 1;
   let scores = { 1: 0, 2: 0 };
-  const TOTAL_SLIDES = 45;
+  const TOTAL_SLIDES = 47;
 
   // ── GENERATE OBJECT SLIDES ────────────────────────────────────────────
   function buildObjectSlides() {
@@ -790,6 +865,7 @@
       const div = document.createElement('div');
       div.className = 'slide';
       div.id = `slide-${slideNum}`;
+      const imgFile = `images/badges/badge_${String(b.num).padStart(2,'0')}_${b.name.toLowerCase().replace(/ /g,'_')}.png`;
       div.innerHTML = `
         <div class="section-header">
           <span class="phase-badge" style="background:var(--practice);">VOCAB PRACTICE</span>
@@ -799,35 +875,17 @@
         <div class="slide-content" style="align-items:center; justify-content:center;">
           <div class="badge-slide">
             <div class="badge-card">
-              <div class="badge-frost" id="frost-${slideNum}">
-                <div class="badge-frost-num">${b.num}</div>
-              </div>
-              <div class="badge-header">
-                <div class="badge-logo">🏅 WE GO ID</div>
-                <div class="badge-num">#${String(b.num).padStart(3,'0')}</div>
-              </div>
-              <div class="badge-body">
-                <div class="badge-avatar">${b.icon}</div>
-                <div class="badge-info">
-                  <div class="badge-field">
-                    <div class="badge-label">Title</div>
-                    <div class="badge-title-field" id="badge-title-${slideNum}">___</div>
-                  </div>
-                  <div class="badge-field">
-                    <div class="badge-label">First Name</div>
-                    <div class="badge-value">${b.name.split(' ')[0]}</div>
-                  </div>
-                  <div class="badge-field">
-                    <div class="badge-label">Last Name</div>
-                    <div class="badge-value">${b.name.split(' ')[1]}</div>
-                  </div>
-                  <div class="badge-field">
-                    <div class="badge-label">Status</div>
-                    <div class="badge-value">${b.status}</div>
-                  </div>
+              <div class="badge-img-wrap">
+                <img class="badge-img" src="${imgFile}" alt="${b.name}">
+                <div class="badge-frost" id="frost-${slideNum}">
+                  <div class="badge-frost-num">${b.num}</div>
                 </div>
               </div>
-              <div class="badge-footer">
+              <div class="badge-title-row">
+                <div>
+                  <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.45);">Title</div>
+                  <div class="badge-title-field" id="badge-title-${slideNum}">___</div>
+                </div>
                 <button class="badge-reveal-btn" onclick="revealTitle(${slideNum}, '${b.title}')">✅ REVEAL TITLE</button>
               </div>
             </div>
@@ -843,10 +901,10 @@
   // ── GENERATE FAMOUS PERSON SLIDES ────────────────────────────────────────────
   function buildFamousSlides() {
     const area = document.getElementById('slide-area');
-    const LAST_FAMOUS = 40 + FAMOUS.length - 1; // slide 43
+    const LAST_FAMOUS = 42 + FAMOUS.length - 1; // slide 45
     FAMOUS.forEach((f, i) => {
-      const slideNum = 40 + i;
-      const nextSlide = slideNum < LAST_FAMOUS ? slideNum + 1 : 44; // 44 = goodbye
+      const slideNum = 42 + i;
+      const nextSlide = slideNum < LAST_FAMOUS ? slideNum + 1 : 46; // 46 = goodbye
       const div = document.createElement('div');
       div.className = 'slide';
       div.id = `slide-${slideNum}`;
@@ -873,10 +931,10 @@
       `;
       area.appendChild(div);
     });
-    // Build goodbye slide (slide 44)
+    // Build goodbye slide (slide 46)
     const goodbye = document.createElement('div');
     goodbye.className = 'slide';
-    goodbye.id = 'slide-44';
+    goodbye.id = 'slide-46';
     goodbye.innerHTML = `
       <div class="section-header">
         <span class="phase-badge" style="background:var(--exit);">EXIT TICKET</span>
@@ -941,10 +999,10 @@
     if (n >= 1 && n <= 22)  document.querySelectorAll('.nb-btn')[0].classList.add('active');
     else if (n === 23)       document.querySelectorAll('.nb-btn')[1].classList.add('active');
     else if (n >= 24 && n <= 34) document.querySelectorAll('.nb-btn')[2].classList.add('active');
-    else if (n === 35)       document.querySelectorAll('.nb-btn')[3].classList.add('active');
-    else if (n === 36)       document.querySelectorAll('.nb-btn')[4].classList.add('active');
-    else if (n >= 37 && n <= 38) document.querySelectorAll('.nb-btn')[5].classList.add('active');
-    else if (n >= 39)        document.querySelectorAll('.nb-btn')[6].classList.add('active');
+    else if (n >= 35 && n <= 36) document.querySelectorAll('.nb-btn')[3].classList.add('active');
+    else if (n >= 37 && n <= 38) document.querySelectorAll('.nb-btn')[4].classList.add('active');
+    else if (n >= 39 && n <= 40) document.querySelectorAll('.nb-btn')[5].classList.add('active');
+    else if (n >= 41)        document.querySelectorAll('.nb-btn')[6].classList.add('active');
   }
 
   // ── GAME LOGIC ────────────────────────────────────────────────────────
@@ -967,6 +1025,11 @@
       el.textContent = scores[team];
     });
   }
+  function revealFix(idx) {
+    const row = document.getElementById(`fi-${idx}`);
+    if (row) row.classList.add('revealed');
+  }
+
   function updateFinalScore() {
     document.getElementById('final-t1').textContent = scores[1];
     document.getElementById('final-t2').textContent = scores[2];

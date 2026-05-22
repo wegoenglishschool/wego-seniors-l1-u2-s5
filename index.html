@@ -882,10 +882,11 @@
                   <div class="badge-frost-num">${b.num}</div>
                 </div>
               </div>
-              <div class="badge-title-row">
-                <div>
-                  <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.45);">Title</div>
-                  <div class="badge-title-field" id="badge-title-${slideNum}">___</div>
+              <div class="badge-title-row" style="justify-content:center; padding:16px 20px;">
+                <div id="badge-answer-${slideNum}" style="display:none; text-align:center;">
+                  <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.45);margin-bottom:4px;">Correct Title</div>
+                  <div id="badge-title-${slideNum}" style="font-family:'Bebas Neue',sans-serif; font-size:64px; color:var(--yellow); letter-spacing:4px; line-height:1;">___</div>
+                  <div id="badge-fullname-${slideNum}" style="font-size:18px; font-weight:700; color:#fff; margin-top:4px;"></div>
                 </div>
               </div>
             </div>
@@ -1080,8 +1081,19 @@
 
   // ── BADGE LOGIC ───────────────────────────────────────────────────────
   function revealTitle(slideNum, title) {
+    // Desfrostear la imagen
     document.getElementById(`frost-${slideNum}`).classList.add('hidden');
+    // Mostrar el panel de respuesta con el título en grande
     document.getElementById(`badge-title-${slideNum}`).textContent = title;
+    const answerPanel = document.getElementById(`badge-answer-${slideNum}`);
+    if (answerPanel) answerPanel.style.display = 'block';
+    // Buscar el nombre completo del badge y mostrarlo
+    const nameEl = document.getElementById(`badge-fullname-${slideNum}`);
+    if (nameEl) {
+      // El nombre está en el alt de la imagen del slide
+      const img = document.querySelector(`#slide-${slideNum} img.badge-img`);
+      if (img) nameEl.textContent = title + ' ' + img.alt;
+    }
   }
 
   // ── EXIT TICKET LOGIC ─────────────────────────────────────────────────

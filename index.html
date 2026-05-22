@@ -207,9 +207,14 @@
     /* Comprehension questions slide */
     .lc-container { flex:1; display:flex; flex-direction:column; gap:8px; overflow:hidden; }
     .lc-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; }
-    .lc-q { background:rgba(255,255,255,0.05); border-radius:12px; padding:10px 16px; border-left:4px solid var(--listening); display:flex; align-items:center; gap:12px; }
+    .lc-q { background:rgba(255,255,255,0.05); border-radius:12px; padding:10px 16px; border-left:4px solid var(--listening); display:flex; align-items:flex-start; gap:12px; cursor:pointer; transition:background 0.2s; flex-direction:column; }
+    .lc-q:hover { background:rgba(255,255,255,0.09); }
+    .lc-q-row { display:flex; align-items:center; gap:12px; width:100%; }
     .lc-num { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--yellow); flex-shrink:0; width:30px; }
     .lc-text { font-size:15px; font-weight:500; color:#fff; }
+    .lc-answer { display:none; font-size:13px; font-weight:600; color:#4FC3F7; padding:4px 8px 2px 42px; border-top:1px solid rgba(255,255,255,0.08); width:100%; }
+    .lc-q.revealed .lc-answer { display:block; }
+    .lc-q.revealed { border-left-color:#4FC3F7; background:rgba(79,195,247,0.08); }
 
     /* ── PHASE 7: EXIT TICKET — TRUE TRUE FALSE FALSE ───────────────────── */
     /* Instructions slide */
@@ -642,16 +647,16 @@
       <div class="slide-content">
         <div class="lc-container">
           <div class="lc-grid">
-            <div class="lc-q"><span class="lc-num">1</span><span class="lc-text">What is Sofia's mom's name?</span></div>
-            <div class="lc-q"><span class="lc-num">2</span><span class="lc-text">What is her mom's favorite color?</span></div>
-            <div class="lc-q"><span class="lc-num">3</span><span class="lc-text">Where is her mom's phone?</span></div>
-            <div class="lc-q"><span class="lc-num">4</span><span class="lc-text">What is Sofia's dad's job?</span></div>
-            <div class="lc-q"><span class="lc-num">5</span><span class="lc-text">What color is her dad's car?</span></div>
-            <div class="lc-q"><span class="lc-num">6</span><span class="lc-text">What does her dad wear every day?</span></div>
-            <div class="lc-q"><span class="lc-num">7</span><span class="lc-text">What is Diego's favorite color?</span></div>
-            <div class="lc-q"><span class="lc-num">8</span><span class="lc-text">What color is Diego's backpack?</span></div>
-            <div class="lc-q"><span class="lc-num">9</span><span class="lc-text">What is Luna's favorite toy?</span></div>
-            <div class="lc-q"><span class="lc-num">10</span><span class="lc-text">What color is Luna's collar?</span></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">1</span><span class="lc-text">What is Sofia's mom's name?</span></div><div class="lc-answer">&#8594; Her mom's name is Laura.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">2</span><span class="lc-text">What is her mom's favorite color?</span></div><div class="lc-answer">&#8594; Her mom's favorite color is blue.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">3</span><span class="lc-text">Where is her mom's phone?</span></div><div class="lc-answer">&#8594; Her mom's phone is on the table.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">4</span><span class="lc-text">What is Sofia's dad's job?</span></div><div class="lc-answer">&#8594; Her dad's job is a doctor.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">5</span><span class="lc-text">What color is her dad's car?</span></div><div class="lc-answer">&#8594; Her dad's car is black.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">6</span><span class="lc-text">What does her dad wear every day?</span></div><div class="lc-answer">&#8594; Her dad wears a tie every day.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">7</span><span class="lc-text">What is Diego's favorite color?</span></div><div class="lc-answer">&#8594; Diego's favorite color is green.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">8</span><span class="lc-text">What color is Diego's backpack?</span></div><div class="lc-answer">&#8594; Diego's backpack is red.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">9</span><span class="lc-text">What is Luna's favorite toy?</span></div><div class="lc-answer">&#8594; Luna's favorite toy is a ball.</div></div>
+            <div class="lc-q" onclick="this.classList.toggle('revealed')"><div class="lc-q-row"><span class="lc-num">10</span><span class="lc-text">What color is Luna's collar?</span></div><div class="lc-answer">&#8594; Luna's collar is pink.</div></div>
           </div>
         </div>
       </div>

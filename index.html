@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WE GO · Session 5 · Relationships</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #05046A;
+      --yellow: #F1C405;
+      --warmup: #7B2FBE;
+      --vocab: #2196F3;
+      --practice: #FF9800;
+      --grammar: #4CAF50;
+      --listening: #4CAF50;
+      --exit: #E91E63;
+      --hw: #607D8B;
+      --team1: #2196F3;
+      --team2: #FF9800;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html,body { width:100%; height:100%; overflow:hidden; background:#05046A; font-family:'Inter',sans-serif; }
+
+    /* ── COVER ─────────────────────────────────────────────────────────── */
+    #cover { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:28px 40px 20px; background:#05046A; }
+    #cover-img-area { position:absolute; top:0; left:0; right:0; bottom:0; background:url('images/cover_s5.webp') center 30%/cover no-repeat; z-index:0; }
+    #cover-img-area::after { content:''; position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to bottom,rgba(5,4,106,0) 0%,rgba(5,4,106,0.97) 100%); }
+    #cover::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(5,4,106,0.35) 0%,rgba(5,4,106,0) 25%,rgba(5,4,106,0) 65%); z-index:1; }
+    .cover-top { position:relative; z-index:2; }
+    .cover-brand { font-size:13px; font-weight:600; color:rgba(255,255,255,0.75); letter-spacing:3px; text-transform:uppercase; margin-bottom:10px; }
+    .cover-unit-label { font-size:36px; font-family:'Playfair Display',serif; font-weight:900; color:#fff; line-height:1.1; }
+    .cover-unit-name { font-size:48px; font-family:'Playfair Display',serif; font-weight:900; font-style:normal; color:var(--yellow); line-height:1.1; }
+    .cover-session { font-size:18px; font-weight:600; color:rgba(255,255,255,0.95); margin-top:10px; letter-spacing:0.5px; }
+    .cover-lp-btn { position:absolute; top:28px; right:36px; z-index:10; background:rgba(255,255,255,0.15); border:1.5px solid rgba(255,255,255,0.5); color:#fff; font-size:13px; font-weight:600; padding:7px 14px; border-radius:20px; cursor:pointer; backdrop-filter:blur(4px); transition:all 0.2s; }
+    .cover-lp-btn:hover { background:rgba(255,255,255,0.25); }
+    .cover-bottom { position:relative; z-index:2; margin-top:4px; }
+    .cover-nav-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .cover-btn { border:none; border-radius:12px; padding:12px 10px; cursor:pointer; text-align:center; transition:all 0.2s; opacity:0.93; }
+    .cover-btn:hover { opacity:1; transform:translateY(-2px); filter:brightness(1.1); }
+    .cover-btn-phase { font-size:13px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:5px; color:#fff; }
+    .cover-btn-title { font-size:12px; font-weight:400; color:rgba(255,255,255,0.85); line-height:1.3; }
+
+    /* ── SLIDE WRAPPER ─────────────────────────────────────────────────── */
+    #slides-wrapper { position:absolute; inset:0; display:none; flex-direction:column; background:var(--navy); }
+    #slides-wrapper.active { display:flex; }
+    #navbar { flex-shrink:0; height:44px; background:rgba(0,0,0,0.35); display:flex; align-items:center; padding:0 8px; gap:2px; border-bottom:1px solid rgba(255,255,255,0.08); }
+    #nb-back { background:none; border:none; color:rgba(255,255,255,0.7); font-size:18px; cursor:pointer; padding:4px 10px; border-radius:6px; flex-shrink:0; transition:color 0.2s; }
+    #nb-back:hover { color:#fff; }
+    .nb-btn { background:none; border:none; color:rgba(255,255,255,0.65); font-size:11px; font-weight:600; cursor:pointer; padding:5px 8px; border-radius:6px; white-space:nowrap; transition:all 0.2s; flex-shrink:0; }
+    .nb-btn:hover { color:#fff; background:rgba(255,255,255,0.1); }
+    .nb-btn.active { background:var(--yellow); color:var(--navy); }
+    #nb-counter { margin-left:auto; font-size:12px; color:rgba(255,255,255,0.5); padding-right:8px; flex-shrink:0; font-weight:600; }
+    #slide-area { flex:1; min-height:0; position:relative; overflow:hidden; }
+    .slide { position:absolute; inset:0; display:none; flex-direction:column; background:var(--navy); }
+    .slide.active { display:flex; }
+    .section-header { flex-shrink:0; display:flex; align-items:center; gap:12px; padding:10px 20px 8px; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .phase-badge { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:20px; color:#fff; white-space:nowrap; flex-shrink:0; }
+    .slide-title { font-size:22px; font-family:'Playfair Display',serif; font-weight:700; color:#fff; flex:1; }
+    .lp-btn { background:none; border:1.5px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.7); font-size:11px; font-weight:600; padding:4px 10px; border-radius:14px; cursor:pointer; transition:all 0.2s; white-space:nowrap; flex-shrink:0; }
+    .lp-btn:hover { border-color:#fff; color:#fff; }
+    .slide-content { flex:1; min-height:0; display:flex; padding:16px 20px; gap:16px; overflow:hidden; }
+
+    /* ── PHASE 1: WARM-UP — TEAM CHALLENGE ─────────────────────────────── */
+    /* Setup slide */
+    .wu-setup { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; }
+    .wu-title { font-family:'Bebas Neue',sans-serif; font-size:64px; color:#fff; letter-spacing:2px; text-align:center; }
+    .wu-teams { display:flex; gap:40px; justify-content:center; }
+    .wu-team-banner { width:280px; border-radius:20px; padding:20px 30px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .wu-team-name { font-size:28px; font-weight:800; color:#fff; letter-spacing:2px; }
+    .wu-score-label { font-size:12px; font-weight:600; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:2px; }
+    .wu-score { font-family:'Bebas Neue',sans-serif; font-size:80px; color:#fff; line-height:1; }
+    .wu-instruction { font-size:18px; font-style:italic; color:rgba(255,255,255,0.7); text-align:center; }
+
+    /* Object slide */
+    .obj-slide { flex:1; display:flex; flex-direction:column; gap:0; overflow:hidden; }
+    .obj-team-bar { flex-shrink:0; padding:6px 20px; font-size:13px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#fff; }
+    .obj-main { flex:1; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; }
+    .obj-img { max-height:100%; max-width:100%; object-fit:contain; border-radius:16px; }
+    .obj-bottom { flex-shrink:0; display:flex; gap:12px; padding:10px 20px 14px; justify-content:center; }
+    .obj-btn { border:none; border-radius:12px; padding:10px 24px; font-size:14px; font-weight:800; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:8px; }
+    .obj-btn:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .obj-btn-hint { background:#FFD700; color:#05046A; }
+    .obj-btn-answer { background:#4CAF50; color:#fff; }
+    .obj-btn-point { background:#E91E63; color:#fff; }
+    .obj-answer-reveal { position:absolute; bottom:70px; left:50%; transform:translateX(-50%); background:rgba(5,4,106,0.95); border:3px solid var(--yellow); border-radius:16px; padding:12px 40px; font-size:36px; font-weight:800; color:var(--yellow); white-space:nowrap; display:none; z-index:20; }
+
+    /* Hint overlay */
+    .hint-panel { position:absolute; inset:0; background:rgba(5,4,106,0.96); display:none; flex-direction:column; align-items:center; justify-content:center; gap:20px; z-index:30; border-radius:0; }
+    .hint-panel.visible { display:flex; }
+    .hint-title { font-size:14px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+    .hint-options { display:flex; flex-direction:column; gap:14px; width:380px; }
+    .hint-option { background:rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.2); border-radius:14px; padding:14px 24px; font-size:26px; font-weight:700; color:#fff; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:16px; }
+    .hint-option:hover { background:rgba(255,255,255,0.15); border-color:#fff; }
+    .hint-option .opt-letter { font-size:14px; font-weight:800; color:var(--yellow); background:rgba(241,196,5,0.15); border-radius:8px; padding:2px 10px; }
+    .hint-close { background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.3); color:#fff; font-size:13px; font-weight:600; padding:8px 24px; border-radius:20px; cursor:pointer; margin-top:10px; }
+
+    /* Final score slide */
+    .final-score { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; position:relative; overflow:hidden; }
+    .final-title { font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--yellow); letter-spacing:3px; }
+    .final-teams { display:flex; gap:60px; align-items:center; }
+    .final-team { display:flex; flex-direction:column; align-items:center; gap:8px; }
+    .final-team-name { font-size:20px; font-weight:800; color:#fff; letter-spacing:2px; }
+    .final-team-score { font-family:'Bebas Neue',sans-serif; font-size:120px; line-height:1; }
+    .final-vs { font-family:'Bebas Neue',sans-serif; font-size:48px; color:rgba(255,255,255,0.3); }
+    .final-winner { font-size:28px; font-weight:800; color:#fff; background:rgba(241,196,5,0.15); border:3px solid var(--yellow); border-radius:20px; padding:12px 40px; display:none; }
+    .confetti-piece { position:absolute; width:10px; height:10px; border-radius:2px; animation: confettiFall 3s linear infinite; }
+    @keyframes confettiFall { 0%{transform:translateY(-20px) rotate(0deg); opacity:1;} 100%{transform:translateY(110vh) rotate(720deg); opacity:0;} }
+
+    /* ── PHASE 2: VOCABULARY — THE NAME GAME ───────────────────────────── */
+    .ng-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; flex:1; }
+    .ng-card { border-radius:20px; padding:20px 24px; display:flex; flex-direction:column; align-items:center; gap:10px; border:3px solid; }
+    .ng-icon { font-size:64px; }
+    .ng-title { font-family:'Bebas Neue',sans-serif; font-size:56px; }
+    .ng-desc { font-size:15px; font-style:italic; color:rgba(255,255,255,0.8); text-align:center; }
+    .ng-mr { background:rgba(33,150,243,0.12); border-color:#2196F3; }
+    .ng-mr .ng-title { color:#64B5F6; }
+    .ng-mrs { background:rgba(233,30,99,0.12); border-color:#E91E63; }
+    .ng-mrs .ng-title { color:#F48FB1; }
+    .ng-miss { background:rgba(123,47,190,0.12); border-color:#7B2FBE; }
+    .ng-miss .ng-title { color:#CE93D8; }
+    .ng-ms { background:rgba(76,175,80,0.12); border-color:#4CAF50; }
+    .ng-ms .ng-title { color:#A5D6A7; }
+
+    /* ── PHASE 3: VOCABULARY PRACTICE — BADGE OF HONOR ─────────────────── */
+    /* Instructions slide */
+    .boh-setup { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; }
+    .boh-instruction { font-size:22px; font-style:italic; color:rgba(255,255,255,0.75); }
+    .boh-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; width:100%; max-width:700px; }
+    .boh-num-btn { background:rgba(255,255,255,0.08); border:2px solid rgba(255,255,255,0.2); border-radius:14px; padding:18px; font-size:28px; font-weight:800; color:#fff; cursor:pointer; text-align:center; transition:all 0.2s; }
+    .boh-num-btn:hover { background:rgba(241,196,5,0.2); border-color:var(--yellow); color:var(--yellow); }
+    .boh-num-btn.used { opacity:0.35; pointer-events:none; }
+
+    /* Badge slide */
+    .badge-slide { flex:1; display:flex; align-items:center; justify-content:center; padding:10px; }
+    .badge-card { width:480px; background:rgba(255,255,255,0.06); border-radius:24px; border:3px solid rgba(255,255,255,0.15); overflow:hidden; position:relative; }
+    .badge-header { background:var(--navy); border-bottom:3px solid var(--yellow); padding:12px 20px; display:flex; align-items:center; gap:12px; }
+    .badge-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--yellow); letter-spacing:2px; }
+    .badge-num { margin-left:auto; font-size:13px; font-weight:800; color:rgba(255,255,255,0.5); }
+    .badge-body { padding:20px; display:flex; gap:20px; align-items:center; }
+    .badge-avatar { width:90px; height:90px; border-radius:50%; border:3px solid var(--yellow); display:flex; align-items:center; justify-content:center; font-size:48px; background:rgba(255,255,255,0.05); flex-shrink:0; }
+    .badge-info { flex:1; display:flex; flex-direction:column; gap:6px; }
+    .badge-field { display:flex; flex-direction:column; }
+    .badge-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.45); }
+    .badge-value { font-size:18px; font-weight:700; color:#fff; }
+    .badge-title-field { font-size:28px; font-weight:800; color:var(--yellow); min-height:40px; }
+    .badge-footer { padding:12px 20px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:center; }
+    .badge-reveal-btn { background:var(--grammar); border:none; color:#fff; font-size:14px; font-weight:800; padding:10px 28px; border-radius:20px; cursor:pointer; transition:all 0.2s; }
+    .badge-reveal-btn:hover { filter:brightness(1.1); }
+
+    /* Frosted overlay */
+    .badge-frost { position:absolute; inset:0; backdrop-filter:blur(12px); background:rgba(5,4,106,0.6); display:flex; align-items:center; justify-content:center; border-radius:24px; transition:opacity 0.4s; }
+    .badge-frost.hidden { opacity:0; pointer-events:none; }
+    .badge-frost-num { font-family:'Bebas Neue',sans-serif; font-size:96px; color:rgba(255,255,255,0.3); }
+
+    /* ── PHASE 4: GRAMMAR — PLACEHOLDER ────────────────────────────────── */
+    .grammar-placeholder { flex:1; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; }
+    .grammar-placeholder-text { font-size:24px; color:rgba(255,255,255,0.3); font-style:italic; }
+
+    /* ── PHASE 5: GRAMMAR PRACTICE — CLAIM IT! ─────────────────────────── */
+    .claim-container { flex:1; position:relative; background:#0a0a1a; overflow:hidden; cursor:none; }
+    .claim-spotlight { position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(255,255,220,0.18) 0%, rgba(255,255,180,0.08) 50%, transparent 70%); pointer-events:none; transform:translate(-50%,-50%); transition:left 0.05s, top 0.05s; z-index:5; box-shadow: 0 0 60px 30px rgba(255,255,180,0.07); }
+    .claim-pair { position:absolute; display:flex; flex-direction:column; align-items:center; gap:8px; z-index:2; }
+    .claim-person { font-size:52px; }
+    .claim-person-name { font-size:13px; font-weight:800; color:rgba(255,255,255,0.8); text-align:center; background:rgba(0,0,0,0.5); padding:3px 10px; border-radius:10px; }
+    .claim-object { font-size:40px; }
+    .claim-bottom { position:absolute; bottom:0; left:0; right:0; background:rgba(5,4,106,0.9); border-top:2px solid rgba(255,255,255,0.1); padding:10px 30px; display:flex; gap:60px; align-items:center; justify-content:center; z-index:10; }
+    .claim-model { display:flex; flex-direction:column; gap:2px; }
+    .claim-model-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,0.4); }
+    .claim-model-text { font-size:18px; font-weight:600; color:#fff; }
+    .claim-model-text em { color:var(--yellow); font-style:normal; font-weight:800; }
+
+    /* ── PHASE 6: LISTENING — MY VLOG ──────────────────────────────────── */
+    /* Vlog frame slide */
+    .vlog-container { flex:1; display:flex; align-items:center; justify-content:center; }
+    .vlog-player { width:680px; background:#0f0f0f; border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
+    .vlog-thumb { position:relative; width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .vlog-thumb-bg { position:absolute; inset:0; background:url('images/sofia_vlog.webp') center/cover no-repeat; opacity:0.7; }
+    .vlog-play-btn { position:relative; z-index:2; width:64px; height:64px; background:rgba(255,255,255,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; }
+    .vlog-play-btn:hover { transform:scale(1.1); background:#fff; }
+    .vlog-play-icon { width:0; height:0; border-top:18px solid transparent; border-bottom:18px solid transparent; border-left:28px solid #0f0f0f; margin-left:5px; }
+    .vlog-info { padding:12px 16px; }
+    .vlog-title { font-size:16px; font-weight:700; color:#fff; margin-bottom:6px; }
+    .vlog-channel { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .vlog-channel-icon { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#FF6B6B,#FF8E53); display:flex; align-items:center; justify-content:center; font-size:14px; }
+    .vlog-channel-name { font-size:13px; font-weight:600; color:#aaa; }
+    .vlog-subscribe { background:#FF0000; border:none; color:#fff; font-size:12px; font-weight:700; padding:6px 14px; border-radius:4px; cursor:pointer; margin-left:auto; }
+    .vlog-stats { display:flex; gap:16px; font-size:12px; color:#aaa; }
+    .vlog-note { text-align:center; font-size:13px; font-style:italic; color:rgba(255,255,255,0.4); padding:8px; border-top:1px solid rgba(255,255,255,0.06); }
+
+    /* Comprehension questions slide */
+    .lc-container { flex:1; display:flex; flex-direction:column; gap:8px; overflow:hidden; }
+    .lc-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:1; }
+    .lc-q { background:rgba(255,255,255,0.05); border-radius:12px; padding:10px 16px; border-left:4px solid var(--listening); display:flex; align-items:center; gap:12px; }
+    .lc-num { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--yellow); flex-shrink:0; width:30px; }
+    .lc-text { font-size:15px; font-weight:500; color:#fff; }
+
+    /* ── PHASE 7: EXIT TICKET — TRUE TRUE FALSE FALSE ───────────────────── */
+    /* Instructions slide */
+    .et-setup { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px; }
+    .et-setup-title { font-family:'Bebas Neue',sans-serif; font-size:52px; color:#fff; letter-spacing:2px; text-align:center; max-width:700px; line-height:1.1; }
+    .et-instruction { font-size:18px; font-style:italic; color:rgba(255,255,255,0.7); text-align:center; max-width:600px; }
+    .et-labels { display:flex; gap:40px; }
+    .et-label-true { background:rgba(76,175,80,0.15); border:3px solid #4CAF50; border-radius:16px; padding:14px 36px; font-size:28px; font-weight:800; color:#4CAF50; }
+    .et-label-false { background:rgba(244,67,54,0.15); border:3px solid #F44336; border-radius:16px; padding:14px 36px; font-size:28px; font-weight:800; color:#F44336; }
+
+    /* Famous person slide */
+    .et-person { flex:1; display:flex; gap:20px; overflow:hidden; }
+    .et-photo-col { width:200px; flex-shrink:0; display:flex; flex-direction:column; gap:12px; align-items:center; justify-content:center; }
+    .et-photo { width:180px; height:180px; border-radius:20px; object-fit:cover; border:3px solid rgba(255,255,255,0.2); }
+    .et-person-name { font-size:20px; font-weight:800; color:#fff; text-align:center; }
+    .et-statements { flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; }
+    .et-stmt { background:rgba(255,255,255,0.05); border-radius:12px; padding:10px 16px; display:flex; align-items:center; gap:12px; border:1px solid rgba(255,255,255,0.08); cursor:pointer; transition:all 0.2s; }
+    .et-stmt:hover { background:rgba(255,255,255,0.09); }
+    .et-stmt-text { font-size:15px; color:#fff; flex:1; }
+    .et-stmt-badge { flex-shrink:0; font-size:13px; font-weight:800; padding:4px 12px; border-radius:20px; display:none; }
+    .et-stmt-badge.true { background:rgba(76,175,80,0.2); color:#4CAF50; border:1.5px solid #4CAF50; display:inline-block; }
+    .et-stmt-badge.false { background:rgba(244,67,54,0.2); color:#F44336; border:1.5px solid #F44336; display:inline-block; }
+    .et-correction { font-size:12px; font-style:italic; color:rgba(255,255,255,0.5); margin-top:3px; display:none; }
+    .et-correction.visible { display:block; }
+
+    /* ── LP MODAL ───────────────────────────────────────────────────────── */
+    #lp-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:10000; display:none; align-items:center; justify-content:center; padding:20px; }
+    #lp-overlay.open { display:flex; }
+    #lp-modal { background:#fff; color:var(--navy); width:100%; max-width:900px; max-height:90vh; border-radius:20px; padding:30px; position:relative; overflow-y:auto; display:flex; flex-direction:column; gap:15px; }
+    #lp-close { position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:var(--navy); }
+    #lp-title { font-size:28px; font-weight:800; font-family:'Playfair Display',serif; color:var(--navy); }
+    .lp-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+    .lp-box { background:#f5f5f5; border-radius:12px; padding:14px; }
+    .lp-box strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#888; }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <div id="cover-img-area"></div>
+  <button class="cover-lp-btn" onclick="openLP(0)">📄 Lesson Plan</button>
+  <div class="cover-top">
+    <div class="cover-brand">WE GO 60 · SENIORS</div>
+    <div class="cover-unit-label">Level 1 · Unit 2</div>
+    <div class="cover-unit-name">Relationships</div>
+    <div class="cover-session">Session 5 · Friday</div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-nav-grid">
+      <button class="cover-btn" style="background:var(--warmup);" onclick="goToSlide(1)">
+        <div class="cover-btn-phase">Warm-up</div>
+        <div class="cover-btn-title">What Is It? Team Challenge</div>
+      </button>
+      <button class="cover-btn" style="background:var(--vocab);" onclick="goToSlide(23)">
+        <div class="cover-btn-phase">Vocabulary</div>
+        <div class="cover-btn-title">The Name Game</div>
+      </button>
+      <button class="cover-btn" style="background:var(--practice);" onclick="goToSlide(24)">
+        <div class="cover-btn-phase">Vocab Practice</div>
+        <div class="cover-btn-title">Badge of Honor</div>
+      </button>
+      <button class="cover-btn" style="background:var(--grammar);" onclick="goToSlide(35)">
+        <div class="cover-btn-phase">Grammar</div>
+        <div class="cover-btn-title">Ownership Club</div>
+      </button>
+      <button class="cover-btn" style="background:var(--practice);" onclick="goToSlide(36)">
+        <div class="cover-btn-phase">Grammar Practice</div>
+        <div class="cover-btn-title">Claim It!</div>
+      </button>
+      <button class="cover-btn" style="background:var(--listening);" onclick="goToSlide(37)">
+        <div class="cover-btn-phase">Listening</div>
+        <div class="cover-btn-title">My Vlog: Meet My Family</div>
+      </button>
+      <button class="cover-btn" style="background:var(--exit);" onclick="goToSlide(39)">
+        <div class="cover-btn-phase">Exit Ticket</div>
+        <div class="cover-btn-title">True, True, False, False</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDES WRAPPER -->
+<div id="slides-wrapper">
+  <div id="navbar">
+    <button id="nb-back" onclick="showCover()">←</button>
+    <button class="nb-btn" onclick="goToSlide(1)">WARM-UP</button>
+    <button class="nb-btn" onclick="goToSlide(23)">VOCAB</button>
+    <button class="nb-btn" onclick="goToSlide(24)">VOCAB PRACTICE</button>
+    <button class="nb-btn" onclick="goToSlide(35)">GRAMMAR</button>
+    <button class="nb-btn" onclick="goToSlide(36)">GRAM. PRACTICE</button>
+    <button class="nb-btn" onclick="goToSlide(37)">LISTENING</button>
+    <button class="nb-btn" onclick="goToSlide(39)">EXIT TICKET</button>
+    <span id="nb-counter">1/44</span>
+  </div>
+  <div id="slide-area">
+
+    <!-- ── SLIDE 1: WARM-UP SETUP ─────────────────────────────────────── -->
+    <div class="slide" id="slide-1">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--warmup);">WARM-UP</span>
+        <span class="slide-title">What Is It? — Team Challenge</span>
+        <button class="lp-btn" onclick="openLP(1)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div class="wu-setup">
+          <div class="wu-title">What Is It?</div>
+          <div class="wu-teams">
+            <div class="wu-team-banner" style="background:rgba(33,150,243,0.15); border:3px solid var(--team1);">
+              <div class="wu-team-name" style="color:var(--team1);">TEAM 1</div>
+              <div class="wu-score-label">Score</div>
+              <div class="wu-score" id="score-t1" style="color:var(--team1);">0</div>
+            </div>
+            <div class="wu-team-banner" style="background:rgba(255,152,0,0.15); border:3px solid var(--team2);">
+              <div class="wu-team-name" style="color:var(--team2);">TEAM 2</div>
+              <div class="wu-score-label">Score</div>
+              <div class="wu-score" id="score-t2" style="color:var(--team2);">0</div>
+            </div>
+          </div>
+          <div class="wu-instruction">"Look at the image. What is this in English?"</div>
+          <button class="obj-btn obj-btn-answer" style="font-size:16px; padding:12px 32px;" onclick="goToSlide(2)">▶ Start Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDES 2–21: OBJECT SLIDES ─────────────────────────────────── -->
+    <!-- Generated by JS -->
+
+    <!-- ── SLIDE 22: FINAL SCORE ──────────────────────────────────────── -->
+    <div class="slide" id="slide-22">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--warmup);">WARM-UP</span>
+        <span class="slide-title">Final Score!</span>
+        <button class="lp-btn" onclick="openLP(1)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div class="final-score" id="final-score-area">
+          <div class="final-title">🏆 Final Score!</div>
+          <div class="final-teams">
+            <div class="final-team">
+              <div class="final-team-name" style="color:var(--team1);">TEAM 1</div>
+              <div class="final-team-score" id="final-t1" style="color:var(--team1);">0</div>
+            </div>
+            <div class="final-vs">VS</div>
+            <div class="final-team">
+              <div class="final-team-name" style="color:var(--team2);">TEAM 2</div>
+              <div class="final-team-score" id="final-t2" style="color:var(--team2);">0</div>
+            </div>
+          </div>
+          <div class="final-winner" id="final-winner"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 23: VOCABULARY — THE NAME GAME ───────────────────────── -->
+    <div class="slide" id="slide-23">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--vocab);">VOCABULARY</span>
+        <span class="slide-title">The Name Game</span>
+        <button class="lp-btn" onclick="openLP(2)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div style="display:flex; flex-direction:column; flex:1; gap:10px;">
+          <div style="text-align:center; font-size:14px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.5);">Formal Titles in English</div>
+          <div class="ng-grid">
+            <div class="ng-card ng-mr">
+              <div class="ng-icon">👔</div>
+              <div class="ng-title">Mr.</div>
+              <div class="ng-desc">For men — married or single</div>
+            </div>
+            <div class="ng-card ng-mrs">
+              <div class="ng-icon">💍</div>
+              <div class="ng-title">Mrs.</div>
+              <div class="ng-desc">For married women</div>
+            </div>
+            <div class="ng-card ng-miss">
+              <div class="ng-icon">🌸</div>
+              <div class="ng-title">Miss</div>
+              <div class="ng-desc">For unmarried women</div>
+            </div>
+            <div class="ng-card ng-ms">
+              <div class="ng-icon">⭐</div>
+              <div class="ng-title">Ms.</div>
+              <div class="ng-desc">For women — married or single</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 24: VOCAB PRACTICE — BADGE OF HONOR SETUP ───────────── -->
+    <div class="slide" id="slide-24">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--practice);">VOCAB PRACTICE</span>
+        <span class="slide-title">Badge of Honor</span>
+        <button class="lp-btn" onclick="openLP(3)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div class="boh-setup">
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:56px; color:var(--yellow); letter-spacing:2px;">Badge of Honor</div>
+          <div class="boh-instruction">"Pick a number from 1 to 10!"</div>
+          <div class="boh-grid" id="boh-num-grid">
+            <!-- Generated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDES 25–34: BADGE SLIDES ─────────────────────────────────── -->
+    <!-- Generated by JS -->
+
+    <!-- ── SLIDE 35: GRAMMAR — OWNERSHIP CLUB (PLACEHOLDER) ──────────── -->
+    <div class="slide" id="slide-35">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--grammar);">GRAMMAR</span>
+        <span class="slide-title">Ownership Club</span>
+        <button class="lp-btn" onclick="openLP(4)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div class="grammar-placeholder">
+          <div style="font-size:48px;">🔧</div>
+          <div class="grammar-placeholder-text">Grammar content coming soon...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 36: GRAMMAR PRACTICE — CLAIM IT! ────────────────────── -->
+    <div class="slide" id="slide-36">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--practice);">GRAMMAR PRACTICE</span>
+        <span class="slide-title">Claim It!</span>
+        <button class="lp-btn" onclick="openLP(5)">📄 Lesson Plan</button>
+      </div>
+      <div class="claim-container" id="claim-container">
+        <div class="claim-spotlight" id="claim-spotlight"></div>
+        <!-- Pairs placed by JS -->
+        <div class="claim-bottom">
+          <div class="claim-model">
+            <div class="claim-model-label">Question</div>
+            <div class="claim-model-text">Whose <em>[object]</em> is it?</div>
+          </div>
+          <div class="claim-model">
+            <div class="claim-model-label">Answer</div>
+            <div class="claim-model-text">It is <em>[Name]'s</em> <em>[object]</em>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 37: LISTENING — VLOG FRAME ──────────────────────────── -->
+    <div class="slide" id="slide-37">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--listening);">LISTENING</span>
+        <span class="slide-title">My Vlog: Meet My Family</span>
+        <button class="lp-btn" onclick="openLP(6)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content" style="align-items:center; justify-content:center;">
+        <div class="vlog-container">
+          <div class="vlog-player">
+            <div class="vlog-thumb">
+              <div class="vlog-thumb-bg"></div>
+              <div class="vlog-play-btn">
+                <div class="vlog-play-icon"></div>
+              </div>
+            </div>
+            <div class="vlog-info">
+              <div class="vlog-title">Meet My Family! 👨‍👩‍👧‍👦</div>
+              <div class="vlog-channel">
+                <div class="vlog-channel-icon">🌍</div>
+                <div class="vlog-channel-name">Sofia's World 🌍</div>
+                <button class="vlog-subscribe">SUBSCRIBE</button>
+              </div>
+              <div class="vlog-stats">
+                <span>👁 1,204 views</span>
+                <span>👍 348 likes</span>
+                <span>📅 2 days ago</span>
+              </div>
+            </div>
+            <div class="vlog-note">📢 Play the audio file for this activity.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 38: LISTENING — COMPREHENSION QUESTIONS ─────────────── -->
+    <div class="slide" id="slide-38">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--listening);">LISTENING</span>
+        <span class="slide-title">Let's Check! 🎯</span>
+        <button class="lp-btn" onclick="openLP(6)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div class="lc-container">
+          <div class="lc-grid">
+            <div class="lc-q"><span class="lc-num">1</span><span class="lc-text">What is Sofia's mom's name?</span></div>
+            <div class="lc-q"><span class="lc-num">2</span><span class="lc-text">What is her mom's favorite color?</span></div>
+            <div class="lc-q"><span class="lc-num">3</span><span class="lc-text">Where is her mom's phone?</span></div>
+            <div class="lc-q"><span class="lc-num">4</span><span class="lc-text">What is Sofia's dad's job?</span></div>
+            <div class="lc-q"><span class="lc-num">5</span><span class="lc-text">What color is her dad's car?</span></div>
+            <div class="lc-q"><span class="lc-num">6</span><span class="lc-text">What does her dad wear every day?</span></div>
+            <div class="lc-q"><span class="lc-num">7</span><span class="lc-text">What is Diego's favorite color?</span></div>
+            <div class="lc-q"><span class="lc-num">8</span><span class="lc-text">What color is Diego's backpack?</span></div>
+            <div class="lc-q"><span class="lc-num">9</span><span class="lc-text">What is Luna's favorite toy?</span></div>
+            <div class="lc-q"><span class="lc-num">10</span><span class="lc-text">What color is Luna's collar?</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDE 39: EXIT TICKET — INSTRUCTIONS ───────────────────────── -->
+    <div class="slide" id="slide-39">
+      <div class="section-header">
+        <span class="phase-badge" style="background:var(--exit);">EXIT TICKET</span>
+        <span class="slide-title">True, True, False, False — Famous Edition</span>
+        <button class="lp-btn" onclick="openLP(7)">📄 Lesson Plan</button>
+      </div>
+      <div class="slide-content">
+        <div class="et-setup">
+          <div class="et-setup-title">True, True, False, False<br>Famous Edition</div>
+          <div class="et-instruction">"Each person has 5 statements. 3 are TRUE. 2 are FALSE. Can you find the false ones?"</div>
+          <div class="et-labels">
+            <div class="et-label-true">✅ TRUE</div>
+            <div class="et-label-false">❌ FALSE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SLIDES 40–43: FAMOUS PERSON SLIDES ─────────────────────────── -->
+    <!-- Generated by JS -->
+
+  </div><!-- #slide-area -->
+</div><!-- #slides-wrapper -->
+
+<!-- LP MODAL -->
+<div id="lp-overlay">
+  <div id="lp-modal">
+    <button id="lp-close" onclick="closeLP()">✕</button>
+    <div id="lp-title"></div>
+    <div class="lp-grid">
+      <div class="lp-box"><strong>Goal</strong><span id="lp-goal"></span></div>
+      <div class="lp-box"><strong>Teacher Cues</strong><span id="lp-cues"></span></div>
+      <div class="lp-box"><strong>Do's</strong><span id="lp-dos"></span></div>
+      <div class="lp-box"><strong>Don'ts</strong><span id="lp-donts"></span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── DATA ──────────────────────────────────────────────────────────────
+  const OBJECTS = [
+    // TEAM 1 (slides 2–11)
+    { name:'Sharpener', img:'images/objects/r01_sharpener.png', team:1, round:1, opts:['Stapler','Sharpener','Tape'], correct:'Sharpener' },
+    { name:'Stapler',   img:'images/objects/r02_stapler.png',   team:1, round:2, opts:['Stapler','Hanger','Sharpener'], correct:'Stapler' },
+    { name:'Tape',      img:'images/objects/r03_tape.png',      team:1, round:3, opts:['Dental floss','Rug','Tape'], correct:'Tape' },
+    { name:'Dental floss', img:'images/objects/r04_dentalfloss.png', team:1, round:4, opts:['Tape','Dental floss','Toothpick'], correct:'Dental floss' },
+    { name:'Rug',       img:'images/objects/r05_rug.png',       team:1, round:5, opts:['Blanket','Cushion','Rug'], correct:'Rug' },
+    { name:'Hanger',    img:'images/objects/r06_hanger.png',    team:1, round:6, opts:['Hanger','Nightstand','Cabinet'], correct:'Hanger' },
+    { name:'Toothpick', img:'images/objects/r07_toothpick.png', team:1, round:7, opts:['Dental floss','Toothpick','Sharpener'], correct:'Toothpick' },
+    { name:'Nightstand',img:'images/objects/r08_nightstand.png',team:1, round:8, opts:['Cabinet','Pillow','Nightstand'], correct:'Nightstand' },
+    { name:'Bathtub',   img:'images/objects/r09_bathtub.png',   team:1, round:9, opts:['Bathtub','Bowl','Mirror'], correct:'Bathtub' },
+    { name:'Cabinet',   img:'images/objects/r10_cabinet.png',   team:1, round:10,opts:['Nightstand','Cabinet','Hanger'], correct:'Cabinet' },
+    // TEAM 2 (slides 12–21)
+    { name:'Cushion',   img:'images/objects/r11_cushion.png',   team:2, round:1, opts:['Pillow','Blanket','Cushion'], correct:'Cushion' },
+    { name:'Bucket',    img:'images/objects/r12_bucket.png',    team:2, round:2, opts:['Bucket','Bowl','Tray'], correct:'Bucket' },
+    { name:'Light switch',img:'images/objects/r13_lightswitch.png',team:2,round:3,opts:['Light bulb','Light switch','Flashlight'], correct:'Light switch' },
+    { name:'Pillow',    img:'images/objects/r14_pillow.png',    team:2, round:4, opts:['Cushion','Blanket','Pillow'], correct:'Pillow' },
+    { name:'Blanket',   img:'images/objects/r15_blanket.png',   team:2, round:5, opts:['Blanket','Rug','Cushion'], correct:'Blanket' },
+    { name:'Light bulb',img:'images/objects/r16_lightbulb.png', team:2, round:6, opts:['Flashlight','Light bulb','Light switch'], correct:'Light bulb' },
+    { name:'Mirror',    img:'images/objects/r17_mirror.png',    team:2, round:7, opts:['Bathtub','Cabinet','Mirror'], correct:'Mirror' },
+    { name:'Bowl',      img:'images/objects/r18_bowl.png',      team:2, round:8, opts:['Bowl','Bucket','Tray'], correct:'Bowl' },
+    { name:'Padlock',   img:'images/objects/r19_padlock.png',   team:2, round:9, opts:['Flashlight','Padlock','Sharpener'], correct:'Padlock' },
+    { name:'Flashlight',img:'images/objects/r20_flashlight.png',team:2, round:10,opts:['Padlock','Light bulb','Flashlight'], correct:'Flashlight' },
+  ];
+
+  const BADGES = [
+    { num:1,  name:'James Carter',   gender:'Male',   status:'Married',         title:'Mr.',  icon:'👨' },
+    { num:2,  name:'Linda Torres',   gender:'Female', status:'Married',         title:'Mrs.', icon:'👩' },
+    { num:3,  name:'Emily Chen',     gender:'Female', status:'Single',          title:'Miss', icon:'👧' },
+    { num:4,  name:'Alex Rivera',    gender:'Male',   status:'Single',          title:'Mr.',  icon:'👦' },
+    { num:5,  name:'Patricia Gomez', gender:'Female', status:'Married',         title:'Mrs.', icon:'👩' },
+    { num:6,  name:'Sophie Martin',  gender:'Female', status:'Single',          title:'Miss', icon:'👧' },
+    { num:7,  name:'David Kim',      gender:'Male',   status:'Married',         title:'Mr.',  icon:'👨' },
+    { num:8,  name:'Rachel Adams',   gender:'Female', status:'Divorced/Single', title:'Ms.',  icon:'👩' },
+    { num:9,  name:'Carlos Ruiz',    gender:'Male',   status:'Single',          title:'Mr.',  icon:'👦' },
+    { num:10, name:'Diana Flores',   gender:'Female', status:'Married',         title:'Mrs.', icon:'👩' },
+  ];
+
+  const FAMOUS = [
+    { name:'Shakira', photo:'images/shakira.webp', emoji:'🎤',
+      stmts:[
+        { text:"Her hometown is Barranquilla.", tf:true },
+        { text:"Her favorite instrument is the guitar.", tf:true },
+        { text:"Shakira's younger son's name is Milan.", tf:false, fix:"Milan is her older son, not younger." },
+        { text:"Shakira's nationality is Colombian.", tf:true },
+        { text:"Her squad includes other Latin artists.", tf:true },
+      ]
+    },
+    { name:'Lionel Messi', photo:'images/messi.webp', emoji:'⚽',
+      stmts:[
+        { text:"His jersey number is 10.", tf:true },
+        { text:"Messi's hometown is Buenos Aires.", tf:false, fix:"His hometown is Rosario, not Buenos Aires." },
+        { text:"His nationality is Argentine.", tf:true },
+        { text:"Messi's wife's name is Valentina.", tf:false, fix:"Her name is Antonela, not Valentina." },
+        { text:"His better half is always by his side at every game.", tf:true },
+      ]
+    },
+    { name:'Beyoncé', photo:'images/beyonce.webp', emoji:'👑',
+      stmts:[
+        { text:"Her daughter's name is Blue Ivy.", tf:true },
+        { text:"Her nationality is British.", tf:false, fix:"She is American, not British." },
+        { text:"Beyoncé's sister's name is Jennifer.", tf:false, fix:"Her sister's name is Solange, not Jennifer." },
+        { text:"Her husband's name is Jay-Z.", tf:true },
+        { text:"Jay-Z is her partner in crime — they make music together.", tf:true },
+      ]
+    },
+    { name:'Cristiano Ronaldo', photo:'images/ronaldo.webp', emoji:'⚽',
+      stmts:[
+        { text:"His jersey number is 7.", tf:true },
+        { text:"Ronaldo's hometown is Madrid, Spain.", tf:false, fix:"His hometown is Funchal, Madeira, Portugal." },
+        { text:"His nationality is Portuguese.", tf:true },
+        { text:"Ronaldo's son's name is Cristiano Jr.", tf:true },
+        { text:"His buddy on the national team is always his captain.", tf:false, fix:"This is not always the case." },
+      ]
+    },
+  ];
+
+  const CLAIM_PAIRS = [
+    { person:'Maria',        object:'Pen',   pEmoji:'👩', oEmoji:'🖊️', x:15, y:15 },
+    { person:'Carlos',       object:'Laptop',pEmoji:'👨', oEmoji:'💻', x:65, y:10 },
+    { person:'The students', object:'Books', pEmoji:'👥', oEmoji:'📚', x:10, y:55 },
+    { person:'Sofia',        object:'Bag',   pEmoji:'👧', oEmoji:'👜', x:70, y:55 },
+    { person:'Mr. Smith',    object:'Hat',   pEmoji:'👴', oEmoji:'🎩', x:38, y:20 },
+    { person:'The teachers', object:'Desks', pEmoji:'👩‍🏫',oEmoji:'🪑', x:40, y:60 },
+  ];
+
+  const LP_DATA = {
+    0: { title:'Session 5 — Relationships', goal:'Review vocabulary, grammar, and communication skills from Unit 2.', cues:'Use each activity as a warm review. Keep energy high.', dos:'Celebrate participation. Move at a good pace.', donts:"Don't spend too long on any one activity." },
+    1: { title:'Warm-up — What Is It? Team Challenge', goal:'Students activate passive English vocabulary for everyday objects in a competitive, low-pressure team dynamic.', cues:'"Team 1, it\'s your turn! Look at the image. What is this in English? No idea? Okay — here are your three options! Choose one! Is that right? Let\'s reveal the answer!"', dos:'Keep the energy high and the pace fast. Celebrate every correct answer. Use the hint card generously — this is a warm-up, not a test.', donts:'Do NOT penalize wrong answers. Do NOT move on without revealing the correct word so all students learn it.' },
+    2: { title:'Vocabulary — The Name Game', goal:'Students recognize and correctly pronounce the 4 formal English titles and understand when to use each one.', cues:'"Look at the screen. Mr. is for men — married or single. Repeat: Mr. Now Mrs. — this is for married women. Repeat: Mrs. [Name], say these two: Mr. and Mrs."', dos:'Correct pronunciation immediately and ask the student to repeat before moving on. Ensure every student participates in the rotation.', donts:'Do NOT translate the titles to Spanish. Do NOT ask students to create their own sentences during this presentation phase.' },
+    3: { title:'Vocabulary Practice — Badge of Honor', goal:'Students correctly identify and apply formal titles in context based on visual cues, producing a complete sentence for each badge.', cues:'"[Name], pick a number from 1 to 10! Ready? Here we go — reveal! Who is this? Tell me the correct title and the full sentence!"', dos:'Call each student by name to participate. Ensure every student produces both the title and the complete sentence.', donts:'Do NOT accept one-word answers. Every student must produce a full sentence.' },
+    4: { title:'Grammar — Ownership Club', goal:'Students recognize the structure of possessive nouns in singular and plural form and can read model sentences aloud correctly.', cues:'"Look at the screen. This is Carlos and this is his laptop. It is Carlos\'s laptop. See the apostrophe-s? [Name], read this sentence aloud for us!"', dos:"Use color-coding on screen to make the apostrophe-s visually clear. Focus purely on recognition and pronunciation.", donts:"Do NOT ask students to create their own sentences yet. Do NOT complete any exercises during this presentation phase." },
+    5: { title:'Grammar Practice — Claim It!', goal:'Students interact with each other to ask and answer ownership questions using possessive nouns in a structured pair dynamic.', cues:'"Watch the spotlight! [Name A], ask the question. [Name B], you answer! The models are on screen — use them!"', dos:'Assign pairs clearly before starting. Ensure question and answer models remain visible on screen at all times.', donts:"Do NOT ask the questions yourself — students must ask each other. Do NOT skip the modeling step before pairs begin." },
+    6: { title:'Listening — My Vlog: Meet My Family', goal:'Students identify possessive adjectives and possessive nouns in a natural spoken context and demonstrate comprehension through oral responses.', cues:'"Today we are watching a vlog! Listen carefully — I will ask you questions after! Ready? Play! ... Okay! [Name], what is Sofia\'s mom\'s favorite color? [Name 2], what color is her dad\'s car?"', dos:'Play the audio twice before asking questions. Ask at least 2 questions per student. Keep all questions oral.', donts:"Do NOT ask students to write answers. Do NOT move to the next question before confirming the current answer is correct." },
+    7: { title:'Exit Ticket — True, True, False, False', goal:'Students evaluate statements about famous people using possessive adjectives, possessive nouns, and slang expressions from the unit, and justify their answers orally.', cues:'"Look at statement number 1. True or False? [Name], what do you think? Why? Use the structure: \'Her... / His... / [Name]\'s...\' to explain!"', dos:'Encourage students to correct the false statements using the right information. Celebrate when students use slang expressions naturally.', donts:"Do NOT accept just 'true' or 'false' — students must produce a sentence to justify their answer." },
+  };
+
+  // ── STATE ─────────────────────────────────────────────────────────────
+  let currentSlide = 1;
+  let scores = { 1: 0, 2: 0 };
+  const TOTAL_SLIDES = 44;
+
+  // ── GENERATE OBJECT SLIDES ────────────────────────────────────────────
+  function buildObjectSlides() {
+    const area = document.getElementById('slide-area');
+    OBJECTS.forEach((obj, i) => {
+      const slideNum = i + 2;
+      const teamColor = obj.team === 1 ? 'var(--team1)' : 'var(--team2)';
+      const div = document.createElement('div');
+      div.className = 'slide';
+      div.id = `slide-${slideNum}`;
+      div.innerHTML = `
+        <div class="section-header">
+          <span class="phase-badge" style="background:var(--warmup);">WARM-UP</span>
+          <span class="slide-title" style="color:${teamColor};">TEAM ${obj.team} — Round ${obj.round}</span>
+          <button class="lp-btn" onclick="openLP(1)">📄 Lesson Plan</button>
+        </div>
+        <div class="obj-slide">
+          <div class="obj-main">
+            <img class="obj-img" src="${obj.img}" alt="${obj.name}">
+            <div class="obj-answer-reveal" id="ans-${slideNum}">✅ ${obj.name}</div>
+          </div>
+          <div class="hint-panel" id="hint-${slideNum}">
+            <div class="hint-title">💡 Choose the correct answer:</div>
+            <div class="hint-options">
+              ${obj.opts.map((o,idx)=>`<div class="hint-option" onclick="closeHint(${slideNum})"><span class="opt-letter">${['A','B','C'][idx]}</span>${o}</div>`).join('')}
+            </div>
+            <button class="hint-close" onclick="closeHint(${slideNum})">✕ Close</button>
+          </div>
+          <div class="obj-bottom">
+            <button class="obj-btn obj-btn-hint" onclick="showHint(${slideNum})">💡 HINT</button>
+            <button class="obj-btn obj-btn-answer" onclick="showAnswer(${slideNum})">✅ ANSWER</button>
+            <button class="obj-btn obj-btn-point" style="background:${teamColor};" onclick="addPoint(${obj.team})">➕ POINT — TEAM ${obj.team}</button>
+          </div>
+        </div>
+      `;
+      // Insert before slide-22
+      const slide22 = document.getElementById('slide-22');
+      area.insertBefore(div, slide22);
+    });
+  }
+
+  // ── GENERATE BADGE SLIDES ─────────────────────────────────────────────
+  function buildBadgeSlides() {
+    const area = document.getElementById('slide-area');
+    const grid = document.getElementById('boh-num-grid');
+    BADGES.forEach((b, i) => {
+      const slideNum = 25 + i;
+      // Add button to grid
+      const btn = document.createElement('button');
+      btn.className = 'boh-num-btn';
+      btn.id = `boh-btn-${b.num}`;
+      btn.textContent = b.num;
+      btn.onclick = () => { goToSlide(slideNum); btn.classList.add('used'); };
+      grid.appendChild(btn);
+      // Build slide
+      const div = document.createElement('div');
+      div.className = 'slide';
+      div.id = `slide-${slideNum}`;
+      div.innerHTML = `
+        <div class="section-header">
+          <span class="phase-badge" style="background:var(--practice);">VOCAB PRACTICE</span>
+          <span class="slide-title">Badge of Honor</span>
+          <button class="lp-btn" onclick="openLP(3)">📄 Lesson Plan</button>
+        </div>
+        <div class="slide-content" style="align-items:center; justify-content:center;">
+          <div class="badge-slide">
+            <div class="badge-card">
+              <div class="badge-frost" id="frost-${slideNum}">
+                <div class="badge-frost-num">${b.num}</div>
+              </div>
+              <div class="badge-header">
+                <div class="badge-logo">🏅 WE GO ID</div>
+                <div class="badge-num">#${String(b.num).padStart(3,'0')}</div>
+              </div>
+              <div class="badge-body">
+                <div class="badge-avatar">${b.icon}</div>
+                <div class="badge-info">
+                  <div class="badge-field">
+                    <div class="badge-label">Title</div>
+                    <div class="badge-title-field" id="badge-title-${slideNum}">___</div>
+                  </div>
+                  <div class="badge-field">
+                    <div class="badge-label">First Name</div>
+                    <div class="badge-value">${b.name.split(' ')[0]}</div>
+                  </div>
+                  <div class="badge-field">
+                    <div class="badge-label">Last Name</div>
+                    <div class="badge-value">${b.name.split(' ')[1]}</div>
+                  </div>
+                  <div class="badge-field">
+                    <div class="badge-label">Status</div>
+                    <div class="badge-value">${b.status}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="badge-footer">
+                <button class="badge-reveal-btn" onclick="revealTitle(${slideNum}, '${b.title}')">✅ REVEAL TITLE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      // Insert before slide-35
+      const slide35 = document.getElementById('slide-35');
+      area.insertBefore(div, slide35);
+    });
+  }
+
+  // ── GENERATE FAMOUS PERSON SLIDES ────────────────────────────────────
+  function buildFamousSlides() {
+    const area = document.getElementById('slide-area');
+    FAMOUS.forEach((f, i) => {
+      const slideNum = 40 + i;
+      const div = document.createElement('div');
+      div.className = 'slide';
+      div.id = `slide-${slideNum}`;
+      div.innerHTML = `
+        <div class="section-header">
+          <span class="phase-badge" style="background:var(--exit);">EXIT TICKET</span>
+          <span class="slide-title">${f.emoji} ${f.name}</span>
+          <button class="lp-btn" onclick="openLP(7)">📄 Lesson Plan</button>
+        </div>
+        <div class="slide-content">
+          <div class="et-person">
+            <div class="et-photo-col">
+              <div style="width:180px;height:180px;border-radius:20px;border:3px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:80px;">${f.emoji}</div>
+              <div class="et-person-name">${f.name}</div>
+            </div>
+            <div class="et-statements">
+              ${f.stmts.map((s,si)=>`
+                <div class="et-stmt" id="stmt-${slideNum}-${si}" onclick="revealStmt(${slideNum},${si},${s.tf},'${(s.fix||'').replace(/'/g,"\\'")}')">
+                  <span class="et-stmt-text">${s.text}</span>
+                  <span class="et-stmt-badge" id="badge-${slideNum}-${si}"></span>
+                </div>
+                <div class="et-correction" id="fix-${slideNum}-${si}">${s.fix||''}</div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+      area.appendChild(div);
+    });
+  }
+
+  // ── BUILD CLAIM IT PAIRS ──────────────────────────────────────────────
+  function buildClaimPairs() {
+    const container = document.getElementById('claim-container');
+    CLAIM_PAIRS.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'claim-pair';
+      div.style.left = p.x + '%';
+      div.style.top = p.y + '%';
+      div.innerHTML = `
+        <div class="claim-person">${p.pEmoji}</div>
+        <div class="claim-person-name">${p.person}</div>
+        <div class="claim-object">${p.oEmoji}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-align:center;">${p.object}</div>
+      `;
+      container.insertBefore(div, container.querySelector('.claim-bottom'));
+    });
+    // Spotlight follows mouse
+    const spotlight = document.getElementById('claim-spotlight');
+    container.addEventListener('mousemove', e => {
+      const rect = container.getBoundingClientRect();
+      spotlight.style.left = (e.clientX - rect.left) + 'px';
+      spotlight.style.top = (e.clientY - rect.top) + 'px';
+    });
+  }
+
+  // ── NAVIGATION ────────────────────────────────────────────────────────
+  function goToSlide(n) {
+    document.getElementById('cover').style.display = 'none';
+    document.getElementById('slides-wrapper').classList.add('active');
+    const prev = document.querySelector('.slide.active');
+    if (prev) prev.classList.remove('active');
+    const next = document.getElementById(`slide-${n}`);
+    if (next) { next.classList.add('active'); currentSlide = n; }
+    document.getElementById('nb-counter').textContent = `${n} / ${TOTAL_SLIDES}`;
+    updateNavbar(n);
+    // Update final score when arriving at slide 22
+    if (n === 22) updateFinalScore();
+  }
+
+  function showCover() {
+    document.getElementById('cover').style.display = '';
+    document.getElementById('slides-wrapper').classList.remove('active');
+  }
+
+  function updateNavbar(n) {
+    document.querySelectorAll('.nb-btn').forEach(b => b.classList.remove('active'));
+    if (n >= 1 && n <= 22)  document.querySelectorAll('.nb-btn')[0].classList.add('active');
+    else if (n === 23)       document.querySelectorAll('.nb-btn')[1].classList.add('active');
+    else if (n >= 24 && n <= 34) document.querySelectorAll('.nb-btn')[2].classList.add('active');
+    else if (n === 35)       document.querySelectorAll('.nb-btn')[3].classList.add('active');
+    else if (n === 36)       document.querySelectorAll('.nb-btn')[4].classList.add('active');
+    else if (n >= 37 && n <= 38) document.querySelectorAll('.nb-btn')[5].classList.add('active');
+    else if (n >= 39)        document.querySelectorAll('.nb-btn')[6].classList.add('active');
+  }
+
+  // ── GAME LOGIC ────────────────────────────────────────────────────────
+  function showHint(slideNum) {
+    document.getElementById(`hint-${slideNum}`).classList.add('visible');
+  }
+  function closeHint(slideNum) {
+    document.getElementById(`hint-${slideNum}`).classList.remove('visible');
+  }
+  function showAnswer(slideNum) {
+    const el = document.getElementById(`ans-${slideNum}`);
+    el.style.display = 'block';
+  }
+  function addPoint(team) {
+    scores[team]++;
+    document.getElementById(`score-t${team}`).textContent = scores[team];
+  }
+  function updateFinalScore() {
+    document.getElementById('final-t1').textContent = scores[1];
+    document.getElementById('final-t2').textContent = scores[2];
+    const winner = document.getElementById('final-winner');
+    if (scores[1] > scores[2]) { winner.textContent = '🏆 TEAM 1 WINS!'; winner.style.color = 'var(--team1)'; winner.style.display = 'block'; }
+    else if (scores[2] > scores[1]) { winner.textContent = '🏆 TEAM 2 WINS!'; winner.style.color = 'var(--team2)'; winner.style.display = 'block'; }
+    else { winner.textContent = "🤝 It's a tie!"; winner.style.color = '#fff'; winner.style.display = 'block'; }
+    spawnConfetti();
+  }
+  function spawnConfetti() {
+    const area = document.getElementById('final-score-area');
+    const colors = ['#F1C405','#2196F3','#FF9800','#E91E63','#4CAF50','#fff'];
+    for (let i = 0; i < 30; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      c.style.left = Math.random()*100 + '%';
+      c.style.background = colors[Math.floor(Math.random()*colors.length)];
+      c.style.animationDelay = Math.random()*2 + 's';
+      c.style.animationDuration = (2+Math.random()*2) + 's';
+      area.appendChild(c);
+    }
+  }
+
+  // ── BADGE LOGIC ───────────────────────────────────────────────────────
+  function revealTitle(slideNum, title) {
+    document.getElementById(`frost-${slideNum}`).classList.add('hidden');
+    document.getElementById(`badge-title-${slideNum}`).textContent = title;
+  }
+
+  // ── EXIT TICKET LOGIC ─────────────────────────────────────────────────
+  function revealStmt(slideNum, si, isTf, fix) {
+    const badge = document.getElementById(`badge-${slideNum}-${si}`);
+    const fixEl = document.getElementById(`fix-${slideNum}-${si}`);
+    if (isTf) {
+      badge.textContent = '✅ TRUE';
+      badge.className = 'et-stmt-badge true';
+    } else {
+      badge.textContent = '❌ FALSE';
+      badge.className = 'et-stmt-badge false';
+      if (fix) fixEl.classList.add('visible');
+    }
+    document.getElementById(`stmt-${slideNum}-${si}`).style.cursor = 'default';
+    document.getElementById(`stmt-${slideNum}-${si}`).onclick = null;
+  }
+
+  // ── LP MODAL ──────────────────────────────────────────────────────────
+  function openLP(n) {
+    const d = LP_DATA[n];
+    document.getElementById('lp-title').textContent = d.title;
+    document.getElementById('lp-goal').textContent = d.goal;
+    document.getElementById('lp-cues').textContent = d.cues;
+    document.getElementById('lp-dos').textContent = d.dos;
+    document.getElementById('lp-donts').textContent = d.donts;
+    document.getElementById('lp-overlay').classList.add('open');
+  }
+  function closeLP() {
+    document.getElementById('lp-overlay').classList.remove('open');
+  }
+
+  // ── KEYBOARD NAVIGATION ───────────────────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      if (currentSlide < TOTAL_SLIDES) goToSlide(currentSlide + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      if (currentSlide > 1) goToSlide(currentSlide - 1);
+    } else if (e.key === 'Escape') {
+      closeLP();
+    }
+  });
+
+  // ── INIT ──────────────────────────────────────────────────────────────
+  buildObjectSlides();
+  buildBadgeSlides();
+  buildFamousSlides();
+  buildClaimPairs();
+  goToSlide(1);
+</script>
+</body>
+</html>
